@@ -3,8 +3,11 @@ package org.fridge.mapper;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 import org.fridge.model.Tag;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Mapper
 @Repository
@@ -17,4 +20,7 @@ public interface TagMapper {
 
     @Delete(value = {"delete from tag where `describe`=#{describe}"})
     int deleteByDescribe(String describe);
+
+    @Select(value = {"select * from tag"})
+    List<Tag> selectAll();
 }
