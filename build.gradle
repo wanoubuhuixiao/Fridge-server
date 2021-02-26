@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'org.fridge.server'
-version = '0.0.1.ALPHA'
+version = '1.0.1.BETA'
 sourceCompatibility = '11'
 
 repositories {
