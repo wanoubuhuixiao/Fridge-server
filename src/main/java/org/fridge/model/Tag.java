@@ -7,6 +7,15 @@ public class Tag {
     private String describe;
 
 
+    public Tag(long id, String describe) {
+        this.id = id;
+        this.describe = describe;
+    }
+
+    public Tag(String describe) {
+        this.describe = describe;
+    }
+
     public long getId() {
         return id;
     }
@@ -14,7 +23,6 @@ public class Tag {
     public void setId(long id) {
         this.id = id;
     }
-
 
     public String getDescribe() {
         return describe;
