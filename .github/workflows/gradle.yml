@@ -20,6 +20,12 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+      - name: Modify gradle config file
+        run: |
+          sed -e '/maven.aliyun.com/d' build.gradle >> build.gradle.1
+          sed -e '/maven.aliyun.com/d' settings.gradle >> settings.gradle.1
+          mv build.gradle.1 build.gradle
+          mv settings.gradle.1 settings.gradle
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build with Gradle
@@ -41,7 +47,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.TOKEN}}
         with:
-          tag_name: Release
+          tag_name: Release ${{steps.get_info.outputs.version}}
           release_name: Release ${{steps.get_info.outputs.version}}
           draft: false # 是否是草稿
           prerelease: false # 是否是预发布
