@@ -17,7 +17,7 @@ public class TagController {
     }
 
     @PostMapping(path = "/tag/insert")
-    public ApiResponse<Object> insert( String describe) {
+    public ApiResponse<Object> insert(String describe) {
         return tagService.insert(new Tag(describe));
     }
 }
