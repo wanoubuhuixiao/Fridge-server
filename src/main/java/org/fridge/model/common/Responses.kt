@@ -2,68 +2,68 @@ package org.fridge.model.common
 
 object Responses {
     @JvmStatic
-    fun <T> validateError() = ApiResponse<T>(Tokens.validateError)
+    fun <T> validateError() = Response<T>(Tokens.validateError)
 
     @JvmStatic
-    fun <T> validateError(message: String) = ApiResponse<T>(Tokens.validateError, message)
+    fun <T> validateError(message: String) = Response<T>(Tokens.validateError, message)
 
     @JvmStatic
-    fun <T> validateError(message: String, data: T) = ApiResponse(Tokens.validateError, message, data)
+    fun <T> validateError(message: String, data: T) = Response(Tokens.validateError, message, data)
 
     @JvmStatic
-    fun <T> validateError(data: T) = ApiResponse(Tokens.validateError, data)
+    fun <T> validateError(data: T) = Response(Tokens.validateError, data)
 
     @JvmStatic
-    fun <T> ok() = ApiResponse<T>(Tokens.ok)
+    fun <T> ok() = Response<T>(Tokens.ok)
 
     @JvmStatic
-    fun <T> ok(message: String) = ApiResponse<T>(Tokens.ok, message)
+    fun <T> ok(message: String) = Response<T>(Tokens.ok, message)
 
     @JvmStatic
-    fun <T> ok(message: String, data: T) = ApiResponse(Tokens.ok, message, data)
+    fun <T> ok(message: String, data: T) = Response(Tokens.ok, message, data)
 
     @JvmStatic
-    fun <T> ok(data: T) = ApiResponse(Tokens.ok, data)
+    fun <T> ok(data: T) = Response(Tokens.ok, data)
 
     @JvmStatic
-    fun <T> fail() = ApiResponse<T>(Tokens.failed)
+    fun <T> fail() = Response<T>(Tokens.failed)
 
     @JvmStatic
-    fun <T> fail(message: String) = ApiResponse<T>(Tokens.failed, message)
+    fun <T> fail(message: String) = Response<T>(Tokens.failed, message)
 
     @JvmStatic
-    fun <T> fail(message: String, data: T) = ApiResponse(Tokens.failed, message, data)
+    fun <T> fail(message: String, data: T) = Response(Tokens.failed, message, data)
 
     @JvmStatic
-    fun <T> fail(data: T) = ApiResponse(Tokens.failed, data)
+    fun <T> fail(data: T) = Response(Tokens.failed, data)
 
     /**
      * return a response with token, which is stored in @Tokens
      * @see ResponseToken
      */
     @JvmStatic
-    fun <T> withToken(token: ResponseToken) = ApiResponse<T>(token)
+    fun <T> withToken(token: ResponseToken) = Response<T>(token)
 
     /**
      * return a response with token and message, which is stored in @Tokens
      * @see ResponseToken
      */
     @JvmStatic
-    fun <T> withToken(token: ResponseToken, message: String) = ApiResponse<T>(token, message)
+    fun <T> withToken(token: ResponseToken, message: String) = Response<T>(token, message)
 
     /**
      * return a response with token, message and data, which is stored in @Tokens
      * @see ResponseToken
      */
     @JvmStatic
-    fun <T> withToken(token: ResponseToken, message: String, data: T) = ApiResponse<T>(token, message, data)
+    fun <T> withToken(token: ResponseToken, message: String, data: T) = Response<T>(token, message, data)
 
     /**
      * return a response with token and data, which is stored in @Tokens
      * @see ResponseToken
      */
     @JvmStatic
-    fun <T> withToken(token: ResponseToken, data: T) = ApiResponse(token, data)
+    fun <T> withToken(token: ResponseToken, data: T) = Response(token, data)
 
     /**
      * return a response with code and summary \\
@@ -71,7 +71,7 @@ object Responses {
      * and then add a token in @Tokens]
      */
     @JvmStatic
-    fun <T> code(code: Int, summary: String) = ApiResponse<T>(code, summary)
+    fun <T> code(code: Int, summary: String) = Response<T>(code, summary)
 
     /**
      * return a response with code, summary and message \\
@@ -79,7 +79,7 @@ object Responses {
      * and then add a token in @Tokens]
      */
     @JvmStatic
-    fun <T> code(code: Int, summary: String, message: String) = ApiResponse<T>(code, summary, message)
+    fun <T> code(code: Int, summary: String, message: String) = Response<T>(code, summary, message)
 
     /**
      * return a response with code, summary, message, data \\
@@ -87,7 +87,7 @@ object Responses {
      * and then add a token in @Tokens]
      */
     @JvmStatic
-    fun <T> code(code: Int, summary: String, message: String, data: T) = ApiResponse<T>(code, summary, message, data)
+    fun <T> code(code: Int, summary: String, message: String, data: T) = Response<T>(code, summary, message, data)
 
     /**
      * return a response with code, summary, message="", data \\
@@ -95,5 +95,5 @@ object Responses {
      * and then add a token in @Tokens]
      */
     @JvmStatic
-    fun <T> code(code: Int, summary: String, data: T) = ApiResponse<T>(code, summary, "", data)
+    fun <T> code(code: Int, summary: String, data: T) = Response<T>(code, summary, "", data)
 }
