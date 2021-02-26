@@ -5,4 +5,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'fridge-server'
+rootProject.name = 'fridge_server'
