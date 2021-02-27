@@ -39,7 +39,7 @@ public class TagService {
         } catch (NumberFormatException e) {
             result = tagMapper.deleteByDescribe(info);
         }
-        if (result == 1) {
+        if (result >= 1) {
             return Responses.ok();
         } else {
             return Responses.fail();
