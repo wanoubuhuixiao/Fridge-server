@@ -23,4 +23,7 @@ public interface TagMapper {
 
     @Select(value = {"select * from tag"})
     List<Tag> selectAll();
+
+    @Select(value = {"select * from tag where `describe` like concat('%', #{describe}, '%') limit 10;"})
+    List<Tag> fuzzy(String describe);
 }

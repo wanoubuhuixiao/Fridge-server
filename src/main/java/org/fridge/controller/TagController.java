@@ -32,4 +32,9 @@ public class TagController {
     public ApiResponse<Object> delete(String info) {
         return tagService.delete(info);
     }
+
+    @PostMapping(path = "/tag/fuzzy")
+    public ApiResponse<List<Tag>> fuzzy(String describe) {
+        return tagService.fuzzy(describe);
+    }
 }

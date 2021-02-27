@@ -45,4 +45,8 @@ public class TagService {
             return Responses.fail();
         }
     }
+
+    public ApiResponse<List<Tag>> fuzzy(String des) {
+        return Responses.ok(tagMapper.fuzzy(des));
+    }
 }

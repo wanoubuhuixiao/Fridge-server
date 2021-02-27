@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>食物标注</title>
+</head>
+<body>
+<script type="text/javascript">
+    function request(url, body, callback) {
+        let formRequest = new Request(url, {
+            method: 'post',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+            },
+            body: body
+        })
+        fetch(formRequest).then(response => {
+            let result = response.json()
+            result.then(res => {
+                callback(res)
+            })
+        })
+    }
+
+    window.onload = function () {
+        request("menu/select/nulltag", "", res => {
+            document.getElementById("food_name").innerHTML = res.data.name
+            document.getElementById("menu_id").value = res.data.id
+        })
+    }
+
+    function submit() {
+        let id = document.getElementById("menu_id").value
+        let nums = []
+        let tags = [document.getElementById("tag1"), document.getElementById("tag2"), document.getElementById("tag3"), document.getElementById("tag4"), document.getElementById("tag5")]
+        tags.forEach(tag => {
+            if (tag.value !== "") {
+                nums.push(parseInt(tag.value.split(":")[0]))
+            }
+        })
+        let json = JSON.stringify(nums)
+        request("menu/update/tag", `tag=${json}&id=${id}`, res => {
+            if (res.code === 200) {
+                request("menu/select/nulltag", "", res => {
+                    document.getElementById("food_name").innerHTML = res.data.name
+                    document.getElementById("menu_id").value = res.data.id
+                })
+                tags.forEach(tag => {
+                    tag.value = ""
+                })
+            } else {
+                alert("错误")
+            }
+        })
+    }
+
+
+    function fuzzy(n) {
+        let tags = [document.getElementById("tag1"), document.getElementById("tag2"), document.getElementById("tag3"), document.getElementById("tag4"), document.getElementById("tag5")]
+        let buttons = [document.getElementById("select1"), document.getElementById("select2"), document.getElementById("select3"), document.getElementById("select4"), document.getElementById("select5"), document.getElementById("select6"), document.getElementById("select7"), document.getElementById("select8"), document.getElementById("select9"), document.getElementById("select10")]
+        let content = tags[n - 1].value
+        if (content === "") {
+            return
+        }
+        request("tag/fuzzy", `describe=${content}`, res => {
+            console.log(res)
+            if (res.code === 200) {
+                document.getElementById("auto_fill_id").value = n;
+                let i = 0
+                res.data.forEach(item => {
+                    buttons[i].innerText = item.id + ":" + item.describe
+                    i++
+                })
+            }
+        })
+    }
+
+    function apply(n) {
+        let tags = [document.getElementById("tag1"), document.getElementById("tag2"), document.getElementById("tag3"), document.getElementById("tag4"), document.getElementById("tag5")]
+        let buttons = [document.getElementById("select1"), document.getElementById("select2"), document.getElementById("select3"), document.getElementById("select4"), document.getElementById("select5"), document.getElementById("select6"), document.getElementById("select7"), document.getElementById("select8"), document.getElementById("select9"), document.getElementById("select10")]
+        tags[document.getElementById("auto_fill_id").value - 1].value = buttons[n - 1].innerText
+    }
+</script>
+<h1 id="food_name">
+
+</h1>
+<input type="hidden" id="menu_id">
+<input type="hidden" id="auto_fill_id">
+tag1:<input type="text" id="tag1" oninput="fuzzy(1)">
+<br>
+tag2:<input type="text" id="tag2" oninput="fuzzy(2)">
+<br>
+tag3:<input type="text" id="tag3" oninput="fuzzy(3)">
+<br>
+tag4:<input type="text" id="tag4" oninput="fuzzy(4)">
+<br>
+tag5:<input type="text" id="tag5" oninput="fuzzy(5)">
+<br>
+<button id="submit" onclick="submit()">
+    提交
+</button>
+<button id="select1" onclick="apply(1)"></button>
+<button id="select2" onclick="apply(2)"></button>
+<button id="select3" onclick="apply(3)"></button>
+<button id="select4" onclick="apply(4)"></button>
+<button id="select5" onclick="apply(5)"></button>
+<button id="select6" onclick="apply(6)"></button>
+<button id="select7" onclick="apply(7)"></button>
+<button id="select8" onclick="apply(8)"></button>
+<button id="select9" onclick="apply(9)"></button>
+<button id="select10" onclick="apply(10)"></button>
+
+</body>
+</html>
