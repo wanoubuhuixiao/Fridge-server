@@ -79,5 +79,4 @@ jobs:
           ssh-keyscan huhaorui.com >> ~/.ssh/known_hosts
           echo "${{ secrets.SSH_PRIVATE_KEY }}" >> ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh 'server_runner@huhaorui.com' "kill -9 \`ps -x | grep fridge_server | sed -n '1p' | grep -Eo [0-9]{4}[0-9]+\`"
           ssh 'server_runner@huhaorui.com' "nohup java -jar /www/wwwroot/fridge.huhaorui.com/${{steps.get_info.outputs.file_name}}.`git rev-parse --short HEAD`"
