@@ -61,3 +61,16 @@ jobs:
           asset_path: ${{steps.get_info.outputs.file_path}}
           asset_name: ${{steps.get_info.outputs.file_name}}
           asset_content_type: application/java-archive
+      - name: deploy file
+        uses: wlixcc/SFTP-Deploy-Action@v1.0
+        with:
+          username: 'server_runner'
+          server: 'huhaorui.com'
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          local_path: './build/libs/*'
+          remote_path: '/www/wwwroot/fridge.huhaorui.com'
+          args: '-o ConnectTimeout=5'
+      - name: restart server
+        run:|
+        ssh 'server_runner@huhaorui.com' "kill -9 \`ps -x | grep fridge_server | sed -n '1p' | grep -Eo [0-9]{4}[0-9]+\`"
+        ssh 'server_runner@huhaorui.com' "nohup java -jar /www/wwwroot/fridge.huhaorui.com/${{steps.get_info.outputs.file_name}}"
