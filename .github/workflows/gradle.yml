@@ -71,6 +71,6 @@ jobs:
           remote_path: '/www/wwwroot/fridge.huhaorui.com'
           args: '-o ConnectTimeout=5'
       - name: restart server
-        run:|
+        run: |
           ssh 'server_runner@huhaorui.com' "kill -9 \`ps -x | grep fridge_server | sed -n '1p' | grep -Eo [0-9]{4}[0-9]+\`"
           ssh 'server_runner@huhaorui.com' "nohup java -jar /www/wwwroot/fridge.huhaorui.com/${{steps.get_info.outputs.file_name}}"
