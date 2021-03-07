@@ -26,4 +26,10 @@ public interface TagMapper {
 
     @Select(value = {"select * from tag where `describe` like concat('%', #{describe}, '%') limit 10;"})
     List<Tag> fuzzy(String describe);
+
+    /**
+     * 根据tag名称查tagid
+     */
+    @Select(value = {"select id from tag where `describe`=#{describe}"})
+    Integer selectTagIdByName(String describe);
 }

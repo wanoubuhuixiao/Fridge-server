@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class MenuController {
     MenuService menuService;
@@ -25,4 +27,10 @@ public class MenuController {
     public ApiResponse<Menu> selectNullTag() {
         return menuService.selectNullTagItem();
     }
+
+    @PostMapping(value = "/menu/select/name")
+    public List<Menu> MenuQueryByName(String menu) {
+        return menuService.MenuQueryByName(menu);
+    }
+
 }

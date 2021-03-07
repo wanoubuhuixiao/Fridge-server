@@ -7,6 +7,9 @@ import org.fridge.model.common.Responses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.ResultSet;
+import java.util.List;
+
 @Service
 public class MenuService {
     MenuMapper menuMapper;
@@ -27,5 +30,9 @@ public class MenuService {
         } else {
             return Responses.fail();
         }
+    }
+
+    public List<Menu> MenuQueryByName(String menu){
+        return menuMapper.selectMenuByName(menu);
     }
 }
