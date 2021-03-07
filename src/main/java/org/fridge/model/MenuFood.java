@@ -3,24 +3,24 @@ package org.fridge.model;
 
 public class MenuFood {
 
-    private long menuId;
-    private long foodId;
+    private Menu menuId;
+    private FoodWarehouse foodId;
 
 
-    public long getMenuId() {
+    public Menu getMenuId() {
         return menuId;
     }
 
-    public void setMenuId(long menuId) {
+    public void setMenuId(Menu menuId) {
         this.menuId = menuId;
     }
 
 
-    public long getFoodId() {
+    public FoodWarehouse getFoodId() {
         return foodId;
     }
 
-    public void setFoodId(long foodId) {
+    public void setFoodId(FoodWarehouse foodId) {
         this.foodId = foodId;
     }
 

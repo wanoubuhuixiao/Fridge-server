@@ -2,6 +2,7 @@ package org.fridge.controller;
 
 import org.fridge.model.Tag;
 import org.fridge.model.common.ApiResponse;
+import org.fridge.service.MenuService;
 import org.fridge.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
