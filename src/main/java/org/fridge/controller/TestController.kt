@@ -6,6 +6,7 @@ import org.fridge.model.common.Responses
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.ResponseBody
 
 @Controller
@@ -13,7 +14,7 @@ class TestController {
     @Autowired
     lateinit var foodMapper: FoodMapper
 
-    @GetMapping(path = ["/hello"])
+    @PostMapping(path = ["/hello"])
     @ResponseBody
     fun hello(): ApiResponse<Any> {
         return Responses.ok("hello")
