@@ -18,7 +18,7 @@ public class SpeakTest {
     }
     @Test
     void testSpeak(){
-        System.out.println(speakService.speak("你好", UUID.randomUUID().toString()));
+        System.out.println(speakService.ruyiRobot("你好", UUID.randomUUID().toString()));
 
     }
 }

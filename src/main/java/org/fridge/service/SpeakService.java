@@ -10,13 +10,14 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 public class SpeakService {
     @Value(value = "${ruyi.app_key}")
     String app_key;
 
-    public ApiResponse<Object> speak(String input, String uid) {
+    public ApiResponse<Object> ruyiRobot(String input, String uid) {
         String url = "http://api.ruyi.ai/v1/message";
         Map<String, Object> map = new HashMap<>();
         map.put("q", input);
@@ -25,12 +26,13 @@ public class SpeakService {
         OkHttpClient okHttpClient = new OkHttpClient();
         RequestBody formBody = RequestBody.create(MediaType.parse("application/json; charset=UTF-8"), new Gson().toJson(map));
         Request request = new Request.Builder().url(url).post(formBody).build();
-        Response response = null;
+        Response response;
         try {
             response = okHttpClient.newCall(request).execute();
+            return Responses.ok(Objects.requireNonNull(response.body()).string());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return Responses.ok(response.body());
+        return Responses.fail();
     }
 }

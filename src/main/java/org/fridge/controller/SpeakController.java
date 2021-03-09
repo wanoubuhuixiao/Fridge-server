@@ -16,7 +16,8 @@ public class SpeakController {
     }
 
     @PostMapping(value = "/speak")
-    public ApiResponse<Object> ChatRobot(String input, String uid) {
-        return speakService.speak(input, uid);
+    public ApiResponse<Object> speak(String input, String uid) {
+        //还有别的东西可能不调用这个机器人
+        return speakService.ruyiRobot(input, uid);
     }
 }
