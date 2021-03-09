@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.ResponseBody
+import java.text.SimpleDateFormat
 import java.util.*
 
 @Controller
@@ -27,30 +28,25 @@ class FoodController {
     @ResponseBody
     fun firstFourRecentFood(id: Long) = Responses.ok(foodMapper.firstFourRecentFood(id))
 
-    @PostMapping(value = ["/food/insert"])
-    fun foodInsert(
-        foodName: String,
-        productionDate: Date,
-        freezer: Long,
-        level: Long,
-        defrost: Long,
-        fridgeId: Long,
-        weight: Float,
-    ): ApiResponse<Any> {
+    @PostMapping(value = ["/foods/insert"])
+    @ResponseBody
+    fun foodInsert(foodName: String, productionDate: String, freezer: Long, level: Long, defrost: Long, fridgeId: Long, weight: Float): ApiResponse<Any> {
         val food = Food()
         food.foodName = foodName
-        food.productionDate = productionDate
+        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm")
+        sdf.timeZone = TimeZone.getTimeZone("GMT+8:00")
+        food.productionDate = sdf.parse(productionDate)
         food.freezer = freezer
         food.level = level
         food.defrost = defrost
         food.fridgeId = fridgeId
         food.weight = weight
 
-        return if (foodService.insertFood(food) == 1) {
-            Responses.ok()
-        } else {
-            Responses.fail()
+        val result=foodService.insertFood(food)
+        if (result == 1) {
+            return Responses.ok()
         }
+        return Responses.fail()
     }
 
 }

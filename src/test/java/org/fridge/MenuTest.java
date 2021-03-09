@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @SpringBootTest
@@ -40,6 +42,14 @@ public class MenuTest {
 
     @Test
     void selectTagIdByName() {
-        //System.out.println(menuMapper.selectTagIdByName("儿童"));
+        String productionDate="2010-03-08 20:20";
+        try{
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            Date date = sdf.parse(productionDate);
+            System.out.println("日期为："+date);
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
+
     }
 }
