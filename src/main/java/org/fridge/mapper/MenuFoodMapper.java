@@ -4,7 +4,7 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
-public interface menuFoodMapper {
+public interface MenuFoodMapper {
     /**
      * 用食材id获得相关的菜谱id
      */

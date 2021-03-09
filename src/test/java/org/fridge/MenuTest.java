@@ -42,14 +42,7 @@ public class MenuTest {
 
     @Test
     void selectTagIdByName() {
-        String productionDate="2010-03-08 20:20";
-        try{
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-            Date date = sdf.parse(productionDate);
-            System.out.println("日期为："+date);
-        }catch (ParseException e){
-            e.printStackTrace();
-        }
-
+        String str="番茄炒鸡蛋怎么做";
+        System.out.println(str.substring(0,5));
     }
 }

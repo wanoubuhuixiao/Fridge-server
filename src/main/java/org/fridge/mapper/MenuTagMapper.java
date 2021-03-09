@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 @Repository
-public interface menuTagMapper {
+public interface MenuTagMapper {
     /**
      * 根据tagid查菜谱id
      * @param tagId tag的ID
