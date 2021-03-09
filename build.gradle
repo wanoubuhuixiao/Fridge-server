@@ -23,6 +23,8 @@ dependencies {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
 
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4'
 
     implementation 'mysql:mysql-connector-java:8.0.22'
@@ -42,6 +44,8 @@ dependencies {
     implementation 'io.springfox:springfox-boot-starter:3.0.0'
 
     implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.3'
+
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
 }
 
