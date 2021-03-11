@@ -24,7 +24,7 @@ public class SpeakService {
         map.put("app_key", app_key);
         map.put("user_id", uid);
         OkHttpClient okHttpClient = new OkHttpClient();
-        RequestBody formBody = RequestBody.create(MediaType.parse("application/json; charset=UTF-8"), new Gson().toJson(map));
+        RequestBody formBody = RequestBody.create(new Gson().toJson(map), MediaType.parse("application/json; charset=UTF-8"));
         Request request = new Request.Builder().url(url).post(formBody).build();
         Response response;
         try {
