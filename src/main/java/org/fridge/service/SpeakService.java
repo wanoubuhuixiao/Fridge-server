@@ -1,5 +1,7 @@
 package org.fridge.service;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import okhttp3.*;
 import org.fridge.model.common.ApiResponse;
@@ -29,7 +31,8 @@ public class SpeakService {
         Response response;
         try {
             response = okHttpClient.newCall(request).execute();
-            return Responses.ok(Objects.requireNonNull(response.body()).string());
+            JSONObject result = JSON.parseObject(Objects.requireNonNull(response.body()).string());
+            return Responses.ok(result);
         } catch (IOException e) {
             e.printStackTrace();
         }
