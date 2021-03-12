@@ -18,3 +18,5 @@ spring:
 
 server:
   port: 8082
+ruyi:
+  app_key: fad0708d-0c8f-456c-a022-0660f9bbf315

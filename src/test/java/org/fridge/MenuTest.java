@@ -45,4 +45,8 @@ public class MenuTest {
         String str="番茄炒鸡蛋怎么做";
         System.out.println(str.substring(0,5));
     }
+    @Test
+    void getMenu(){
+        System.out.println(menuMapper.selectMenuById(14));
+    }
 }

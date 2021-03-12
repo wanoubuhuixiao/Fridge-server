@@ -11,6 +11,15 @@ public class Menu {
     private String ingredients;
     private String tag;
 
+    public Menu(long id, String name, String largeImg, String smallImg, String steps, String ingredients, String tag) {
+        this.id = id;
+        this.name = name;
+        this.largeImg = largeImg;
+        this.smallImg = smallImg;
+        this.steps = steps;
+        this.ingredients = ingredients;
+        this.tag = tag;
+    }
 
     public long getId() {
         return id;
@@ -74,4 +83,13 @@ public class Menu {
         this.tag = tag;
     }
 
+    @Override
+    public String toString() {
+        return "Menu{" +
+                "name='" + name + '\'' +
+                ", largeImg='" + largeImg + '\'' +
+                ", smallImg='" + smallImg + '\'' +
+                ", tag='" + tag + '\'' +
+                '}';
+    }
 }

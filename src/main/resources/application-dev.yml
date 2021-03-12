@@ -15,6 +15,11 @@ spring:
       idle-timeout: 30000
       max-lifetime: 120000
       connection-test-query: SELECT 1
-
+  redis:
+    host: redis.huhaorui.com
+    password: 0660f9bbf315
+    port: 6379
 server:
   port: 8082
+ruyi:
+  app_key: fad0708d-0c8f-456c-a022-0660f9bbf315

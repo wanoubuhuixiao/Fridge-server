@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "ruyi.app_key",
+      "type": "java.lang.String",
+      "description": "The key of ruyi."
+  }
+] }
