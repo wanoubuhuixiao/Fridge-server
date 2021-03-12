@@ -36,6 +36,10 @@ public class MenuFavourite {
         this.userId = userId;
     }
 
+    public MenuFavourite() {
+
+    }
+
     @Override
     public String toString() {
         return "MenuFavourite{" +

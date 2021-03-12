@@ -14,12 +14,11 @@ public interface MenuFavouriteMapper {
     @Results(
             value = {
                     @Result(
-                    property = "menu", column = "id",javaType = org.fridge.model.Menu.class,
-                    one = @One(select = "org.fridge.mapper.MenuMapper.selectMenuById", fetchType = FetchType.EAGER)
-            )
+                            property = "menu", column = "id", javaType = org.fridge.model.Menu.class,
+                            one = @One(select = "org.fridge.mapper.MenuMapper.selectMenuById", fetchType = FetchType.EAGER)
+                    )
             }
     )
-
     List<MenuFavourite> selectMenuFavouriteByUserId(int user_id);
 
 }

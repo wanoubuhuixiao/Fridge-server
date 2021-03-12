@@ -1,6 +1,7 @@
 package org.fridge.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.ResultType;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.fridge.model.Menu;
@@ -26,7 +27,8 @@ public interface MenuMapper {
      * 用菜谱id查菜谱
      */
     @Select(value = {"select * from menu where id=#{id}"})
-    Menu selectMenuById(Integer id);
+    @ResultType(Menu.class)
+    Menu selectMenuById(int id);
 
     /**
      * (用户)菜名模糊查询菜谱

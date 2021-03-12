@@ -1,8 +1,6 @@
 package org.fridge.model;
 
-
 public class Menu {
-
     private long id;
     private String name;
     private String largeImg;
@@ -19,6 +17,10 @@ public class Menu {
         this.steps = steps;
         this.ingredients = ingredients;
         this.tag = tag;
+    }
+
+    public Menu() {
+
     }
 
     public long getId() {
