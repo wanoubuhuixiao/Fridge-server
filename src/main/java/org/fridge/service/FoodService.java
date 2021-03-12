@@ -4,11 +4,8 @@ import org.fridge.mapper.FoodMapper;
 import org.fridge.mapper.FoodWarehouseMapper;
 import org.fridge.model.Food;
 import org.fridge.model.FoodWarehouse;
-import org.fridge.model.Menu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class FoodService {
@@ -26,12 +23,12 @@ public class FoodService {
         this.foodWarehouseMapper = foodWarehouseMapper;
     }
 
-    public int insertFood(Food food){
+    public int insertFood(Food food) {
         FoodWarehouse fo = foodWarehouseMapper.selectFoodByName(food.getFoodName());
-        if(fo!=null){
+        if (fo != null) {
             food.setId(fo.getId());
             long freezer = food.getFreezer();
-            if(freezer==1)
+            if (freezer == 1)
                 food.setShelfLife(fo.getFreezerShelfLife());
             else
                 food.setShelfLife(fo.getRefrigeratorShelfLife());

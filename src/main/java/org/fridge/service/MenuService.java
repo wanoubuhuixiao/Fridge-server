@@ -9,8 +9,6 @@ import org.fridge.model.common.Responses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -42,7 +40,7 @@ public class MenuService {
     }
 
     public List<MenuFavourite> selectFavourite(int userId) {
-        return ( menuFavouriteMapper.selectMenuFavouriteByUserId(userId));
+        return (menuFavouriteMapper.selectMenuFavouriteByUserId(userId));
     }
 
     public List<Menu> MenuQueryByName(String menu) {

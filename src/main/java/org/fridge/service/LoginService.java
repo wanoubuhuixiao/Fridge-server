@@ -28,7 +28,7 @@ public class LoginService {
         for (int i = 0; i < 6; i++) {
             captcha.append(random.nextInt(10));
         }
-        redisTemplate.opsForValue().append("Captcha_"+uid,captcha.toString());
+        redisTemplate.opsForValue().append("Captcha_" + uid, captcha.toString());
         return captcha.toString();
     }
 }

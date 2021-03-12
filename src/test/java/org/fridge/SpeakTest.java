@@ -1,6 +1,5 @@
 package org.fridge;
 
-import com.google.gson.Gson;
 import org.fridge.service.SpeakService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +15,9 @@ public class SpeakTest {
     public void setSpeakService(SpeakService speakService) {
         this.speakService = speakService;
     }
+
     @Test
-    void testSpeak(){
+    void testSpeak() {
         System.out.println(speakService.ruyiRobot("你好", UUID.randomUUID().toString()));
 
     }

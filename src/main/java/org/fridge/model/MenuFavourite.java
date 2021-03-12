@@ -1,7 +1,5 @@
 package org.fridge.model;
 
-import org.fridge.mapper.MenuFavouriteMapper;
-
 import java.util.Date;
 
 public class MenuFavourite {

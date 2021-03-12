@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @SpringBootTest
@@ -42,11 +40,12 @@ public class MenuTest {
 
     @Test
     void selectTagIdByName() {
-        String str="番茄炒鸡蛋怎么做";
-        System.out.println(str.substring(0,5));
+        String str = "番茄炒鸡蛋怎么做";
+        System.out.println(str.substring(0, 5));
     }
+
     @Test
-    void getMenu(){
+    void getMenu() {
         System.out.println(menuMapper.selectMenuById(14));
     }
 }
