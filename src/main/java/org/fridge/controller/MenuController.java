@@ -42,5 +42,9 @@ public class MenuController {
         return menuService.selectLimitMenu(num);
     }
 
+    @PostMapping(value = "/menu/select/id")
+    public Menu getMenuById(int id){
+        return menuService.selectMenuById(id);
+    }
 
 }

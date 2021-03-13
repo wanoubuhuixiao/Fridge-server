@@ -33,7 +33,7 @@ public interface MenuMapper {
     /**
      * (用户)菜名模糊查询菜谱
      */
-    @Select(value = {"select * from menu where name like '%#{menuname}%'"})
+    @Select(value = {"select * from menu where name like concat('%', #{menu}, '%')"})
     List<Menu> selectMenuByName(String menuname);
 
     /**

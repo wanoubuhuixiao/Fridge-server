@@ -5,6 +5,7 @@ import org.fridge.mapper.FoodMapper;
 import org.fridge.mapper.MenuMapper;
 import org.fridge.model.Food;
 import org.fridge.service.MenuService;
+import org.fridge.service.SpeakService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +22,13 @@ public class MenuTest {
     MenuController menuController;
 
     MenuService menuService;
+
+    SpeakService speakService;
+
+    @Autowired
+    public void setSpeakService(SpeakService speakService) {
+        this.speakService = speakService;
+    }
 
     @Autowired
     public void setMenuService(MenuService menuService) {
@@ -63,6 +71,6 @@ public class MenuTest {
 
     @Test
     void getMenu() {
-        System.out.println(menuMapper.selectMenuById(14));
+        speakService.ruyiRobot("杭州天气","xxx");
     }
 }
