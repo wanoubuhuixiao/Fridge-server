@@ -45,7 +45,7 @@ public interface MenuMapper {
     /**
      * 查前n条菜谱
      */
-    @Select(value = {"select * from menu limit #{n}"})
-    List<Menu> selectLimitMenu(int n);
+    @Select(value = {"select * from menu limit #{num}"})
+    List<Menu> selectLimitMenu(int num);
 
 }

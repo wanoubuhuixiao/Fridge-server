@@ -35,8 +35,11 @@ public class MenuController {
     }
 
     @PostMapping(value = "/menu/recommend")
-    public List<Menu> MenuRecommend(int n) {
-        return menuService.selectLimitMenu(n);
+    public List<Menu> MenuRecommend(int num) {
+        if(num<0){
+            return null;
+        }
+        return menuService.selectLimitMenu(num);
     }
 
 

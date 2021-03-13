@@ -17,6 +17,9 @@ public class SpeakController {
 
     @PostMapping(value = "/speak")
     public ApiResponse<Object> speak(String input, String uid) {
+//        if(input.contains("天气") || input.contains("气温") || input.contains("温度") || input.contains("度") ){
+//
+//        }
         //还有别的东西可能不调用这个机器人
         return speakService.ruyiRobot(input, uid);
     }
