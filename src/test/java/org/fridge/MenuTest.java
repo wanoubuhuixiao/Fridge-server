@@ -1,11 +1,14 @@
 package org.fridge;
 
+import org.fridge.controller.MenuController;
 import org.fridge.mapper.FoodMapper;
 import org.fridge.mapper.MenuMapper;
 import org.fridge.model.Food;
+import org.fridge.service.MenuService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.web.servlet.RequestBuilder;
 
 import java.util.Date;
 
@@ -14,6 +17,20 @@ public class MenuTest {
     MenuMapper menuMapper;
 
     FoodMapper foodMapper;
+
+    MenuController menuController;
+
+    MenuService menuService;
+
+    @Autowired
+    public void setMenuService(MenuService menuService) {
+        this.menuService = menuService;
+    }
+
+    @Autowired
+    public void setMenuController(MenuController menuController) {
+        this.menuController = menuController;
+    }
 
     @Autowired
     public void setFoodMapper(FoodMapper foodMapper) {

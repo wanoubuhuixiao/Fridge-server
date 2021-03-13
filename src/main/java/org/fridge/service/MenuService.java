@@ -46,4 +46,8 @@ public class MenuService {
     public List<Menu> MenuQueryByName(String menu) {
         return menuMapper.selectMenuByName(menu);
     }
+
+    public List<Menu> selectLimitMenu(int n){
+        return menuMapper.selectLimitMenu(n);
+    }
 }
