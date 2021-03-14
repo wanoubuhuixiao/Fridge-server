@@ -4,7 +4,6 @@ import org.apache.ibatis.annotations.Insert
 import org.apache.ibatis.annotations.Mapper
 import org.apache.ibatis.annotations.Select
 import org.fridge.model.Food
-import org.fridge.model.FoodWarehouse
 import org.springframework.stereotype.Repository
 
 @Mapper

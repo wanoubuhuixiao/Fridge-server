@@ -30,7 +30,15 @@ class FoodController {
 
     @PostMapping(value = ["/foods/insert"])
     @ResponseBody
-    fun foodInsert(foodName: String, productionDate: String, freezer: Long, level: Long, defrost: Long, fridgeId: Long, weight: Float): ApiResponse<Any> {
+    fun foodInsert(
+        foodName: String,
+        productionDate: String,
+        freezer: Long,
+        level: Long,
+        defrost: Long,
+        fridgeId: Long,
+        weight: Float,
+    ): ApiResponse<Any> {
         val food = Food()
         food.foodName = foodName
         val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm")
@@ -42,7 +50,7 @@ class FoodController {
         food.fridgeId = fridgeId
         food.weight = weight
 
-        val result=foodService.insertFood(food)
+        val result = foodService.insertFood(food)
         if (result == 1) {
             return Responses.ok()
         }

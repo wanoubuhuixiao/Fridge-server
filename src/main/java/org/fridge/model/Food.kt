@@ -1,6 +1,6 @@
 package org.fridge.model
 
-import java.util.Date
+import java.util.*
 
 data class Food(
     var id: Long = 0,

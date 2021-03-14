@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface FoodWarehouseMapper {
-    @Select(value="select * from food_warehouse where foodName=#{foodname}")
+    @Select(value = "select * from food_warehouse where foodName=#{foodname}")
     FoodWarehouse selectFoodByName(String foodname);
 
     /**

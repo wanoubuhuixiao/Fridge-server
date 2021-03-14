@@ -4,5 +4,10 @@
       "name": "ruyi.app_key",
       "type": "java.lang.String",
       "description": "The key of ruyi."
-  }
-] }
+    },
+    {
+      "name": "tuling.key",
+      "type": "java.lang.String",
+      "description": "The key for tuling robot."
+    }
+  ] }

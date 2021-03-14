@@ -1,8 +1,6 @@
 package org.fridge;
 
 import org.fridge.mapper.MenuFavouriteMapper;
-import org.fridge.mapper.MenuMapper;
-import org.fridge.model.Menu;
 import org.fridge.model.MenuFavourite;
 import org.fridge.service.MenuService;
 import org.junit.jupiter.api.Test;
