@@ -1,5 +1,6 @@
 package org.fridge.mapper
 
+import org.apache.ibatis.annotations.Delete
 import org.apache.ibatis.annotations.Insert
 import org.apache.ibatis.annotations.Mapper
 import org.apache.ibatis.annotations.Select
@@ -20,5 +21,8 @@ interface FoodMapper {
 
     @Insert("insert into food(id, foodName, productionDate, shelfLife, freezer, level, defrost, fridgeId, weight)\nvalues (#{id}, #{foodName}, #{productionDate}, #{shelfLife}, #{freezer}, #{level}, #{defrost}, #{fridgeId}, #{weight})")
     fun insertFood(food: Food): Int
+
+    @Delete("delete from food where foodName=#{foodName}")
+    fun deleteFood(foodName: String): Int
 
 }

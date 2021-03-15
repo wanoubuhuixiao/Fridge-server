@@ -30,7 +30,7 @@ class FoodController {
 
     @PostMapping(value = ["/foods/insert"])
     @ResponseBody
-    fun foodInsert(
+    fun insertFood(
         foodName: String,
         productionDate: String,
         freezer: Long,
@@ -54,8 +54,20 @@ class FoodController {
         if (result == 1) {
             return Responses.ok()
         }
-        return Responses.fail()
+        if(result == 404){
+            return Responses.fail("食物仓库里没有这种食物")
+        }
+        return Responses.fail("食物录入失败")
     }
 
+    @PostMapping(value = ["/foods/delete"])
+    @ResponseBody
+    fun takeFood(foodName: String) : ApiResponse<Any> {
+        val result = foodService.takeFood(foodName)
+        if (result == 1) {
+            return Responses.ok()
+        }
+        return Responses.fail()
+    }
 }
 
