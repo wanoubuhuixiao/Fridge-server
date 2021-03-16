@@ -2,7 +2,6 @@ package org.fridge.model;
 
 /**
  * 用于给用户选择“不能吃的食物”，包括食物和tag
- * 好像不需要？
  */
 
 public class Diet {

@@ -54,7 +54,7 @@ class FoodController {
         if (result == 1) {
             return Responses.ok()
         }
-        if(result == 404){
+        if(result == -1){
             return Responses.fail("食物仓库里没有这种食物")
         }
         return Responses.fail("食物录入失败")

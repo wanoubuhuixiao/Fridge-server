@@ -2,7 +2,10 @@ package org.fridge.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.fridge.model.Diet;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Mapper
 @Repository
@@ -20,5 +23,13 @@ public interface TagDietMapper {
      */
     @Select(value = {"select tag_id from tag_diet where id=#{id}"})
     Integer selectTagIDByID(String id);
+
+    /**
+     * 模糊匹配tag名称
+     * @param describe 输入的（部分）tag名称
+     * @return 能模糊匹配到的Diet
+     */
+    @Select(value = {"select id as id, `describe` as name from tag_diet where `describe` like concat('%', #{describe}, '%') limit 10"})
+    List<Diet> selectDietFuzzy(String describe);
 
 }

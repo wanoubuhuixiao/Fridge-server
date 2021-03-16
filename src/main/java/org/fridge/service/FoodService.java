@@ -35,7 +35,7 @@ public class FoodService {
 
             return foodMapper.insertFood(food);
         }
-        return 404;//仓库里没有这种食材，即fo==null
+        return -1;//仓库里没有这种食材，即fo==null
     }
 
     public int takeFood(String foodName){

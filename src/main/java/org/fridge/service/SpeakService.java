@@ -17,10 +17,10 @@ import java.util.Objects;
 
 @Service
 public class SpeakService {
-    @Value(value = "${ruyi.app_key}")
+    @Value(value = "${robot.ruyi.app_key}")
     String app_key;
 
-    @Value(value = "${tuling.key}")
+    @Value(value = "${robot.tuling.key}")
     String tuling_key;
 
     public ApiResponse<Object> ruyiRobot(String input, String uid) {
