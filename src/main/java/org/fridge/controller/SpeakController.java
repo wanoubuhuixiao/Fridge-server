@@ -1,7 +1,5 @@
 package org.fridge.controller;
 
-import com.alibaba.fastjson.JSONObject;
-import org.fridge.model.Menu;
 import org.fridge.model.common.ApiResponse;
 import org.fridge.service.MenuService;
 import org.fridge.service.SpeakService;
@@ -31,21 +29,18 @@ public class SpeakController {
         int index2 = input.indexOf("我想做");
         int index3 = input.indexOf("我想吃");
         String menuName;
-        if(index1 != -1 || index2 != -1 || index3 != -1){
-            if(index1 != -1){//怎么做
-                menuName = input.substring(0,index1);
-            }
-            else if(index2 != -1){//我想做
-                menuName = input.substring(index2+3);
-            }
-            else {//我想吃
-                menuName = input.substring(index3+3);
+        if (index1 != -1 || index2 != -1 || index3 != -1) {
+            if (index1 != -1) {//怎么做
+                menuName = input.substring(0, index1);
+            } else if (index2 != -1) {//我想做
+                menuName = input.substring(index2 + 3);
+            } else {//我想吃
+                menuName = input.substring(index3 + 3);
             }
             return menuService.SpeakMenuQuery(menuName);
         }
 
-        if(input.contains("热量"))
-        {
+        if (input.contains("热量")) {
             return speakService.ruyiRobot(input, uid);
         }
         //其他用图灵机器人

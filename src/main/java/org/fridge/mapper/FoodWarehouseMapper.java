@@ -22,6 +22,7 @@ public interface FoodWarehouseMapper {
 
     /**
      * 模糊匹配食物名称
+     *
      * @param foodName 输入的（部分）食物名称
      * @return 能模糊匹配到的Diet
      */

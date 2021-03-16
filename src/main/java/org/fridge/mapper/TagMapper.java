@@ -4,7 +4,6 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import org.fridge.model.Diet;
 import org.fridge.model.Tag;
 import org.springframework.stereotype.Repository;
 

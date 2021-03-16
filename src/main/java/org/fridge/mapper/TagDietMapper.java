@@ -11,13 +11,12 @@ import java.util.List;
 @Repository
 public interface TagDietMapper {
     /**
-     *根据名称查询id，返回不为null表示有这个种类的tag可以选为“不吃的食物
+     * 根据名称查询id，返回不为null表示有这个种类的tag可以选为“不吃的食物
      */
     @Select(value = {"select id from tag_diet where `describe`=#{name}"})
     String selectTagDiet(String name);
 
     /**
-     *
      * @param id 表中行的id
      * @return tag_id 对应的tag的id
      */
@@ -26,6 +25,7 @@ public interface TagDietMapper {
 
     /**
      * 模糊匹配tag名称
+     *
      * @param describe 输入的（部分）tag名称
      * @return 能模糊匹配到的Diet
      */

@@ -31,13 +31,13 @@ class FoodController {
     @PostMapping(value = ["/foods/insert"])
     @ResponseBody
     fun insertFood(
-        foodName: String,
-        productionDate: String,
-        freezer: Long,
-        level: Long,
-        defrost: Long,
-        fridgeId: Long,
-        weight: Float,
+            foodName: String,
+            productionDate: String,
+            freezer: Long,
+            level: Long,
+            defrost: Long,
+            fridgeId: Long,
+            weight: Float,
     ): ApiResponse<Any> {
         val food = Food()
         food.foodName = foodName
@@ -54,7 +54,7 @@ class FoodController {
         if (result == 1) {
             return Responses.ok()
         }
-        if(result == -1){
+        if (result == -1) {
             return Responses.fail("食物仓库里没有这种食物")
         }
         return Responses.fail("食物录入失败")
@@ -62,7 +62,7 @@ class FoodController {
 
     @PostMapping(value = ["/foods/delete"])
     @ResponseBody
-    fun takeFood(foodName: String) : ApiResponse<Any> {
+    fun takeFood(foodName: String): ApiResponse<Any> {
         val result = foodService.takeFood(foodName)
         if (result == 1) {
             return Responses.ok()

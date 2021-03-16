@@ -9,7 +9,6 @@ import org.fridge.service.SpeakService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.web.servlet.RequestBuilder;
 
 import java.util.Date;
 
@@ -71,6 +70,6 @@ public class MenuTest {
 
     @Test
     void getMenu() {
-        speakService.ruyiRobot("杭州天气","xxx");
+        speakService.ruyiRobot("杭州天气", "xxx");
     }
 }

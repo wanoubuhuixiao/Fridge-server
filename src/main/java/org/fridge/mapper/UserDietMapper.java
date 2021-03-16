@@ -24,7 +24,7 @@ public interface UserDietMapper {
     int deleteUserDiet(UserDiet userDiet);
 
     /**
-     *根据用户id查他不吃的所有东西
+     * 根据用户id查他不吃的所有东西
      */
     @Select(value = {"select * from user_diet where user_id=#{userId}"})
     List<UserDiet> selectDietByUser(Integer userId);

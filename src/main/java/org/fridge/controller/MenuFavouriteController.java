@@ -1,10 +1,8 @@
 package org.fridge.controller;
 
 import org.fridge.model.MenuFavourite;
-
 import org.fridge.model.common.ApiResponse;
 import org.fridge.model.common.Responses;
-
 import org.fridge.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +23,7 @@ public class MenuFavouriteController {
 
     @PostMapping(value = "/menu/select/favourite")
     @ResponseBody
-    public ApiResponse<List<MenuFavourite>> selectFavouriteByUserId(int id){
+    public ApiResponse<List<MenuFavourite>> selectFavouriteByUserId(int id) {
         return Responses.ok(menuService.selectFavourite(id));
     }
 }

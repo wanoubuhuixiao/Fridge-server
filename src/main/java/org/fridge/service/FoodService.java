@@ -38,7 +38,7 @@ public class FoodService {
         return -1;//仓库里没有这种食材，即fo==null
     }
 
-    public int takeFood(String foodName){
+    public int takeFood(String foodName) {
         return foodMapper.deleteFood(foodName);
     }
 }

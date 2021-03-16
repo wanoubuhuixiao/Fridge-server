@@ -17,6 +17,7 @@ public class UserDiet {
     public Integer getFoodORtag_id() {
         return foodORtag_id;
     }
+
     public void setFoodORtag_id(Integer foodORtag_id) {
         this.foodORtag_id = foodORtag_id;
     }
@@ -24,6 +25,7 @@ public class UserDiet {
     public Boolean getType() {
         return type;
     }
+
     public void setType(Boolean type) {
         this.type = type;
     }
