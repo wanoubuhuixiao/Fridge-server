@@ -4,7 +4,6 @@ import org.fridge.model.Menu;
 import org.fridge.model.common.ApiResponse;
 import org.fridge.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,14 +35,14 @@ public class MenuController {
 
     @PostMapping(value = "/menu/recommend")
     public List<Menu> MenuRecommend(int num) {
-        if(num<0){
+        if (num < 0) {
             return null;
         }
         return menuService.selectLimitMenu(num);
     }
 
     @PostMapping(value = "/menu/select/id")
-    public Menu getMenuById(int id){
+    public Menu getMenuById(int id) {
         return menuService.selectMenuById(id);
     }
 
