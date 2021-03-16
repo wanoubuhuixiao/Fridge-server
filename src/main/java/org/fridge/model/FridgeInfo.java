@@ -3,19 +3,19 @@ package org.fridge.model;
 
 public class FridgeInfo {
 
-    private long id;
+    private Long id;
     private String modelType;
-    private double freezerTemp;
-    private double refrigeratorTemp;
-    private double freezerHumidity;
-    private double refrigeratorHumidity;
+    private Double freezerTemp;
+    private Double refrigeratorTemp;
+    private Double freezerHumidity;
+    private Double refrigeratorHumidity;
 
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -29,38 +29,38 @@ public class FridgeInfo {
     }
 
 
-    public double getFreezerTemp() {
+    public Double getFreezerTemp() {
         return freezerTemp;
     }
 
-    public void setFreezerTemp(double freezerTemp) {
+    public void setFreezerTemp(Double freezerTemp) {
         this.freezerTemp = freezerTemp;
     }
 
 
-    public double getRefrigeratorTemp() {
+    public Double getRefrigeratorTemp() {
         return refrigeratorTemp;
     }
 
-    public void setRefrigeratorTemp(double refrigeratorTemp) {
+    public void setRefrigeratorTemp(Double refrigeratorTemp) {
         this.refrigeratorTemp = refrigeratorTemp;
     }
 
 
-    public double getFreezerHumidity() {
+    public Double getFreezerHumidity() {
         return freezerHumidity;
     }
 
-    public void setFreezerHumidity(double freezerHumidity) {
+    public void setFreezerHumidity(Double freezerHumidity) {
         this.freezerHumidity = freezerHumidity;
     }
 
 
-    public double getRefrigeratorHumidity() {
+    public Double getRefrigeratorHumidity() {
         return refrigeratorHumidity;
     }
 
-    public void setRefrigeratorHumidity(double refrigeratorHumidity) {
+    public void setRefrigeratorHumidity(Double refrigeratorHumidity) {
         this.refrigeratorHumidity = refrigeratorHumidity;
     }
 

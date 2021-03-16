@@ -5,14 +5,14 @@ import java.util.Date;
 public class MenuFavourite {
     private Menu menu;
     private Date favouriteTime;
-    private int userId;
+    private Integer userId;
 
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

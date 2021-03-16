@@ -3,18 +3,18 @@ package org.fridge.model;
 
 public class FoodWarehouse {
 
-    private long id;
+    private Long id;
     private String foodName;
-    private long freezerShelfLife;
-    private long refrigeratorShelfLife;
-    private long whetherOpen;
+    private Long freezerShelfLife;
+    private Long refrigeratorShelfLife;
+    private Long whetherOpen;
 
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -28,29 +28,29 @@ public class FoodWarehouse {
     }
 
 
-    public long getFreezerShelfLife() {
+    public Long getFreezerShelfLife() {
         return freezerShelfLife;
     }
 
-    public void setFreezerShelfLife(long freezerShelfLife) {
+    public void setFreezerShelfLife(Long freezerShelfLife) {
         this.freezerShelfLife = freezerShelfLife;
     }
 
 
-    public long getRefrigeratorShelfLife() {
+    public Long getRefrigeratorShelfLife() {
         return refrigeratorShelfLife;
     }
 
-    public void setRefrigeratorShelfLife(long refrigeratorShelfLife) {
+    public void setRefrigeratorShelfLife(Long refrigeratorShelfLife) {
         this.refrigeratorShelfLife = refrigeratorShelfLife;
     }
 
 
-    public long getWhetherOpen() {
+    public Long getWhetherOpen() {
         return whetherOpen;
     }
 
-    public void setWhetherOpen(long whetherOpen) {
+    public void setWhetherOpen(Long whetherOpen) {
         this.whetherOpen = whetherOpen;
     }
 

@@ -3,7 +3,7 @@ package org.fridge.model;
 
 public class Tag {
 
-    private long id;
+    private Long id;
     private String describe;
 
 
@@ -16,11 +16,11 @@ public class Tag {
         this.describe = describe;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

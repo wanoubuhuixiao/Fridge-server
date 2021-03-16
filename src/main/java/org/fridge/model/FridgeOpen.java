@@ -5,25 +5,25 @@ import java.util.Date;
 
 public class FridgeOpen {
 
-    private long id;
-    private long fridgeId;
+    private Long id;
+    private Long fridgeId;
     private Date time;
 
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
 
-    public long getFridgeId() {
+    public Long getFridgeId() {
         return fridgeId;
     }
 
-    public void setFridgeId(long fridgeId) {
+    public void setFridgeId(Long fridgeId) {
         this.fridgeId = fridgeId;
     }
 
