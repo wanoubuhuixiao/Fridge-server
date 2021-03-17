@@ -25,4 +25,7 @@ interface FoodMapper {
     @Delete("delete from food where foodName=#{foodName}")
     fun deleteFood(foodName: String): Int
 
+    @Select("select level from food where foodName=#{foodName}")
+    fun findFoodLevel(foodName: String): Int?
+
 }

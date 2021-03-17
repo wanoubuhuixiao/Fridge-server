@@ -10,13 +10,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class FoodService {
     FoodMapper foodMapper;
+    FoodWarehouseMapper foodWarehouseMapper;
 
     @Autowired
     public void setFoodMapper(FoodMapper foodMapper) {
         this.foodMapper = foodMapper;
     }
-
-    FoodWarehouseMapper foodWarehouseMapper;
 
     @Autowired
     public void setFoodWarehouseMapper(FoodWarehouseMapper foodWarehouseMapper) {
@@ -40,5 +39,16 @@ public class FoodService {
 
     public int takeFood(String foodName) {
         return foodMapper.deleteFood(foodName);
+    }
+
+    public String findFoodLevel(String foodName) {
+        String result;
+        Integer level = foodMapper.findFoodLevel(foodName);
+        if (level != null) {
+            result = foodName + "在冰箱的第" + level + "层";
+        } else {
+            result = "冰箱里没有" + foodName;
+        }
+        return result;
     }
 }
