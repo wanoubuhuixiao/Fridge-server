@@ -9,6 +9,31 @@
       "name": "robot.tuling.key",
       "type": "java.lang.String",
       "description": "The key for tuling robot."
+    },
+    {
+      "name": "com.huhaorui.taggingimage.path",
+      "type": "java.lang.String",
+      "description": "The path to run this service."
+    },
+    {
+      "name": "com.huhaorui.taggingimage.accesskeyid",
+      "type": "java.lang.String",
+      "description": "AccessKeyId of Aliyun."
+    },
+    {
+      "name": "com.huhaorui.taggingimage.accesskeysecret",
+      "type": "java.lang.String",
+      "description": "AccessKeySecret of Aliyun."
+    },
+    {
+      "name": "com.huhaorui.taggingimage.oss.path",
+      "type": "java.lang.String",
+      "description": "define the OSS's path."
+    },
+    {
+      "name": "com.huhaorui.taggingimage.oss.bucket",
+      "type": "java.lang.String",
+      "description": "OSS's bucket name."
     }
   ]
 }
