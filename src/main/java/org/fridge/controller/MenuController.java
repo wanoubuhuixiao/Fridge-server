@@ -29,12 +29,12 @@ public class MenuController {
     }
 
     @PostMapping(value = "/menu/select/name")
-    public List<Menu> MenuQueryByName(String menu) {
+    public List<Menu> menuQueryByName(String menu) {
         return menuService.MenuQueryByName(menu);
     }
 
     @PostMapping(value = "/menu/recommend")
-    public List<Menu> MenuRecommend(int num) {
+    public List<Menu> menuRecommend(int num) {
         if (num < 0) {
             return null;
         }

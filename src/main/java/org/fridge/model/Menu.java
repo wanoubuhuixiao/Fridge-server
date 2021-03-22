@@ -1,5 +1,10 @@
 package org.fridge.model;
 
+import com.alibaba.fastjson.JSONArray;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Menu {
     private Long id;
     private String name;
@@ -8,6 +13,9 @@ public class Menu {
     private String steps;
     private String ingredients;
     private String tag;
+
+    //菜谱推荐时比较用的点数
+    private double point;
 
     public Menu(long id, String name, String largeImg, String smallImg, String steps, String ingredients, String tag) {
         this.id = id;
@@ -21,6 +29,28 @@ public class Menu {
 
     public Menu() {
 
+    }
+
+    /**
+     *计算所有菜谱的点数，并赋值给对应的menu对象的point属性
+     * @param menuList 所有菜谱
+     * @param userInfoList 对应冰箱id的所有用户
+     * @param userDietList
+     * @param menuFavouriteList
+     * @param foodList
+     */
+    public static void countPoints(List<Menu> menuList, List<UserInfo> userInfoList, List<UserDiet> userDietList, List<MenuFavourite> menuFavouriteList, List<Food> foodList){
+        List<Tag> favouriteTag = new ArrayList<>();
+        for (MenuFavourite menuFavourite: menuFavouriteList) {
+            String tags = menuFavourite.getMenu().getTag();
+            JSONArray tagsJsonArray = JSONArray.parseArray(tags);
+            for (Object o: tagsJsonArray) {
+                int tag = Integer.parseInt(o.toString());
+
+            }
+            //favouriteTag.add()
+
+        }
     }
 
     public Long getId() {
@@ -83,6 +113,14 @@ public class Menu {
 
     public void setTag(String tag) {
         this.tag = tag;
+    }
+
+    public double getPoint() {
+        return point;
+    }
+
+    public void setPoint(double point) {
+        this.point = point;
     }
 
     @Override

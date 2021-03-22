@@ -62,8 +62,8 @@ class FoodController {
 
     @PostMapping(value = ["/foods/delete"])
     @ResponseBody
-    fun takeFood(foodName: String): ApiResponse<Any> {
-        val result = foodService.takeFood(foodName)
+    fun takeFood(foodName: String, fridgeId: Int): ApiResponse<Any> {
+        val result = foodService.takeFood(foodName, fridgeId)
         if (result == 1) {
             return Responses.ok()
         }

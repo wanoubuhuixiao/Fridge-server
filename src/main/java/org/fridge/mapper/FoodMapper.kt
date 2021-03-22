@@ -22,10 +22,10 @@ interface FoodMapper {
     @Insert("insert into food(id, foodName, productionDate, shelfLife, freezer, level, defrost, fridgeId, weight)\nvalues (#{id}, #{foodName}, #{productionDate}, #{shelfLife}, #{freezer}, #{level}, #{defrost}, #{fridgeId}, #{weight})")
     fun insertFood(food: Food): Int
 
-    @Delete("delete from food where foodName=#{foodName}")
-    fun deleteFood(foodName: String): Int
+    @Delete("delete from food where foodName=#{foodName} and fridgeId=#{fridgeId}")
+    fun deleteFood(foodName: String, fridgeId: Int): Int
 
-    @Select("select level from food where foodName=#{foodName}")
-    fun findFoodLevel(foodName: String): Int?
+    @Select("select level from food where foodName=#{foodName} and fridgeId=#{fridgeId}")
+    fun findFoodLevel(foodName: String, fridgeId: Int): Int?
 
 }

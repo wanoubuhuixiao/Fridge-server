@@ -4,7 +4,6 @@ import net.sf.json.JSONObject;
 import org.fridge.mapper.MenuFavouriteMapper;
 import org.fridge.mapper.MenuMapper;
 import org.fridge.model.Menu;
-import org.fridge.model.MenuFavourite;
 import org.fridge.model.common.ApiResponse;
 import org.fridge.model.common.Responses;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +14,10 @@ import java.util.List;
 @Service
 public class MenuService {
     MenuMapper menuMapper;
-    MenuFavouriteMapper menuFavouriteMapper;
 
     @Autowired
     public void setMenuMapper(MenuMapper menuMapper) {
         this.menuMapper = menuMapper;
-    }
-
-    @Autowired
-    public void setMenuFavouriteMapper(MenuFavouriteMapper menuFavouriteMapper) {
-        this.menuFavouriteMapper = menuFavouriteMapper;
     }
 
     public ApiResponse<Menu> selectNullTagItem() {
@@ -38,10 +31,6 @@ public class MenuService {
         } else {
             return Responses.fail();
         }
-    }
-
-    public List<MenuFavourite> selectFavourite(int userId) {
-        return (menuFavouriteMapper.selectMenuFavouriteByUserId(userId));
     }
 
     public List<Menu> MenuQueryByName(String menu) {
@@ -68,4 +57,13 @@ public class MenuService {
         resultJson.put("result", menuList.get(0));
         return Responses.ok(resultJson);
     }
+
+    /**
+     * 菜谱推荐
+     * @param num 几道菜
+     * @return menuList
+     */
+//    public List<Menu> menuRecommend(int num){
+//
+//    }
 }

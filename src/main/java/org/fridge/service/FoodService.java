@@ -37,13 +37,13 @@ public class FoodService {
         return -1;//仓库里没有这种食材，即fo==null
     }
 
-    public int takeFood(String foodName) {
-        return foodMapper.deleteFood(foodName);
+    public int takeFood(String foodName, Integer fridgeId) {
+        return foodMapper.deleteFood(foodName, fridgeId);
     }
 
-    public String findFoodLevel(String foodName) {
+    public String findFoodLevel(String foodName, Integer fridgeId) {
         String result;
-        Integer level = foodMapper.findFoodLevel(foodName);
+        Integer level = foodMapper.findFoodLevel(foodName, fridgeId);
         if (level != null) {
             result = foodName + "在冰箱的第" + level + "层";
         } else {
