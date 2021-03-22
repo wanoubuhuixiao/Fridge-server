@@ -27,11 +27,18 @@ public class FoodService {
         if (fo != null) {
             food.setId(fo.getId());
             long freezer = food.getFreezer();
-            if (freezer == 1)
-                food.setShelfLife(fo.getFreezerShelfLife());
-            else
-                food.setShelfLife(fo.getRefrigeratorShelfLife());
+            if (freezer == 1){
+                if(fo.getFreezerShelfLife()!=null){
+                    food.setShelfLife(fo.getFreezerShelfLife());
+                }
 
+            }
+            else{
+                if(fo.getRefrigeratorShelfLife()!=null){
+                    food.setShelfLife(fo.getRefrigeratorShelfLife());
+                }
+
+            }
             return foodMapper.insertFood(food);
         }
         return -1;//仓库里没有这种食材，即fo==null
