@@ -106,8 +106,8 @@ val ByteArray.md5: ByteArray
 val ByteArray.sha1: ByteArray
     get() {
         return try {
-            val md5 = MessageDigest.getInstance("SHA-1")
-            md5.digest(this)
+            val sha1 = MessageDigest.getInstance("SHA-1")
+            sha1.digest(this)
         } catch (e: NoSuchAlgorithmException) {
             e.printStackTrace()
             byteArrayOf()
@@ -117,8 +117,8 @@ val ByteArray.sha1: ByteArray
 val ByteArray.sha256: ByteArray
     get() {
         return try {
-            val md5 = MessageDigest.getInstance("SHA-256")
-            md5.digest(this)
+            val sha256 = MessageDigest.getInstance("SHA-256")
+            sha256.digest(this)
         } catch (e: NoSuchAlgorithmException) {
             e.printStackTrace()
             byteArrayOf()
@@ -128,8 +128,8 @@ val ByteArray.sha256: ByteArray
 val ByteArray.sha512: ByteArray
     get() {
         return try {
-            val md5 = MessageDigest.getInstance("SHA-512")
-            md5.digest(this)
+            val sha512 = MessageDigest.getInstance("SHA-512")
+            sha512.digest(this)
         } catch (e: NoSuchAlgorithmException) {
             e.printStackTrace()
             byteArrayOf()
@@ -138,9 +138,9 @@ val ByteArray.sha512: ByteArray
 
 val ByteArray.crc32: Long
     get() {
-        val crc = CRC32()
-        crc.update(this)
-        return crc.value
+        val crc32 = CRC32()
+        crc32.update(this)
+        return crc32.value
     }
 
 val Long.bytes: ByteArray
