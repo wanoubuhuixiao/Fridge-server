@@ -32,4 +32,5 @@ public interface TagMapper {
      */
     @Select(value = {"select id from tag where `describe`=#{describe}"})
     Integer selectTagIdByName(String describe);
+
 }

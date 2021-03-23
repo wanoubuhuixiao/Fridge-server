@@ -5,18 +5,18 @@ import java.util.Date;
 
 public class FoodMall {
 
-    private long id;
+    private Long id;
     private String name;
     private Date productionDate;
-    private long shelfLife;
-    private double weight;
+    private Long shelfLife;
+    private Double weight;
 
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -39,20 +39,20 @@ public class FoodMall {
     }
 
 
-    public long getShelfLife() {
+    public Long getShelfLife() {
         return shelfLife;
     }
 
-    public void setShelfLife(long shelfLife) {
+    public void setShelfLife(Long shelfLife) {
         this.shelfLife = shelfLife;
     }
 
 
-    public double getWeight() {
+    public Double getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(Double weight) {
         this.weight = weight;
     }
 

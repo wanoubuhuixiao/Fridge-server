@@ -1,6 +1,6 @@
 package org.fridge.service;
 
-import org.fridge.mapper.UserMapper;
+import org.fridge.mapper.UserInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -9,12 +9,12 @@ import java.util.Random;
 
 @Service
 public class LoginService {
-    UserMapper userMapper;
+    UserInfoMapper userInfoMapper;
     RedisTemplate<String, String> redisTemplate;
 
     @Autowired
-    public void setUserMapper(UserMapper userMapper) {
-        this.userMapper = userMapper;
+    public void setUserMapper(UserInfoMapper userInfoMapper) {
+        this.userInfoMapper = userInfoMapper;
     }
 
     @Autowired

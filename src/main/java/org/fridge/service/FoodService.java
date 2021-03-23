@@ -10,13 +10,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class FoodService {
     FoodMapper foodMapper;
+    FoodWarehouseMapper foodWarehouseMapper;
 
     @Autowired
     public void setFoodMapper(FoodMapper foodMapper) {
         this.foodMapper = foodMapper;
     }
-
-    FoodWarehouseMapper foodWarehouseMapper;
 
     @Autowired
     public void setFoodWarehouseMapper(FoodWarehouseMapper foodWarehouseMapper) {
@@ -28,13 +27,35 @@ public class FoodService {
         if (fo != null) {
             food.setId(fo.getId());
             long freezer = food.getFreezer();
-            if (freezer == 1)
-                food.setShelfLife(fo.getFreezerShelfLife());
-            else
-                food.setShelfLife(fo.getRefrigeratorShelfLife());
+            if (freezer == 1){
+                if(fo.getFreezerShelfLife()!=null){
+                    food.setShelfLife(fo.getFreezerShelfLife());
+                }
 
+            }
+            else{
+                if(fo.getRefrigeratorShelfLife()!=null){
+                    food.setShelfLife(fo.getRefrigeratorShelfLife());
+                }
+
+            }
             return foodMapper.insertFood(food);
         }
-        return 2;//仓库里没有这种食材，即fo==null
+        return -1;//仓库里没有这种食材，即fo==null
+    }
+
+    public int takeFood(String foodName, Integer fridgeId) {
+        return foodMapper.deleteFood(foodName, fridgeId);
+    }
+
+    public String findFoodLevel(String foodName, Integer fridgeId) {
+        String result;
+        Integer level = foodMapper.findFoodLevel(foodName, fridgeId);
+        if (level != null) {
+            result = foodName + "在冰箱的第" + level + "层";
+        } else {
+            result = "冰箱里没有" + foodName;
+        }
+        return result;
     }
 }

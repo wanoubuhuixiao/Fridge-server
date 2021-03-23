@@ -3,45 +3,45 @@ package org.fridge.model;
 
 public class Seasoning {
 
-    private long id;
-    private long fridgeId;
-    private double weight;
-    private long seasoningStatus;
+    private Long id;
+    private Long fridgeId;
+    private Double weight;
+    private Long seasoningStatus;
     private String name;
 
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
 
-    public long getFridgeId() {
+    public Long getFridgeId() {
         return fridgeId;
     }
 
-    public void setFridgeId(long fridgeId) {
+    public void setFridgeId(Long fridgeId) {
         this.fridgeId = fridgeId;
     }
 
 
-    public double getWeight() {
+    public Double getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(Double weight) {
         this.weight = weight;
     }
 
 
-    public long getSeasoningStatus() {
+    public Long getSeasoningStatus() {
         return seasoningStatus;
     }
 
-    public void setSeasoningStatus(long seasoningStatus) {
+    public void setSeasoningStatus(Long seasoningStatus) {
         this.seasoningStatus = seasoningStatus;
     }
 
