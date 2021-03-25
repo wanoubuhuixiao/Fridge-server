@@ -5,6 +5,7 @@ import org.fridge.model.common.ApiResponse;
 import org.fridge.model.common.Responses;
 import org.fridge.service.FoodService;
 import org.fridge.service.MenuService;
+import org.fridge.service.MessageService;
 import org.fridge.service.SpeakService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ public class SpeakController {
     MenuService menuService;
 
     FoodService foodService;
+    MessageService messageService;
 
     @Autowired
     public void setFoodService(FoodService foodService) {
@@ -31,6 +33,11 @@ public class SpeakController {
     @Autowired
     public void setSpeakService(SpeakService speakService) {
         this.speakService = speakService;
+    }
+
+    @Autowired
+    public void setMessageService(MessageService messageService) {
+        this.messageService = messageService;
     }
 
     @PostMapping(value = "/speak")
@@ -78,5 +85,14 @@ public class SpeakController {
         }
         //其他用图灵机器人
         return speakService.tulingRobot(input);
+    }
+
+    @PostMapping(value = "/speak/message/add")
+    public ApiResponse<Object> addMessage(String key, String message) {
+        return messageService.addMessage(key, message);
+    }
+    @PostMapping(value = "/speak/message/get")
+    public ApiResponse<Object> getMessage(String key){
+        return messageService.getMessage(key);
     }
 }
