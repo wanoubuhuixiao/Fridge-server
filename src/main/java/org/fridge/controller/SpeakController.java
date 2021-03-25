@@ -9,6 +9,7 @@ import org.fridge.service.MessageService;
 import org.fridge.service.SpeakService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -87,7 +88,7 @@ public class SpeakController {
         return speakService.tulingRobot(input);
     }
 
-    @PostMapping(value = "/speak/message/add")
+    @RequestMapping(value = "/speak/message/add")
     public ApiResponse<Object> addMessage(String key, String message) {
         return messageService.addMessage(key, message);
     }
