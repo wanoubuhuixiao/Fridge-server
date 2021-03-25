@@ -23,7 +23,7 @@ public class MessageService {
     public ApiResponse<Object> getMessage(String key) {
         String output = redisTemplate.opsForList().leftPop(key);
         if (output != null) {
-            return Responses.ok(output);
+            return Responses.ok("获取成功", output);
         } else {
             return Responses.fail("队列为空");
         }
