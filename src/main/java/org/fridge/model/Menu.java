@@ -35,7 +35,7 @@ public class Menu {
      *计算所有菜谱的点数，并赋值给对应的menu对象的point属性
      * @param menuList 所有菜谱
      * @param userInfoList 对应冰箱id的所有用户
-     * @param userDietList
+     * @param userDietList 对应冰箱id的所有用户的“忌口“食物
      * @param menuFavouriteList
      * @param foodList
      */
