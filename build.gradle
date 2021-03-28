@@ -53,6 +53,7 @@ dependencies {
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
     implementation 'com.aliyun:imagerecog20190930:1.0.1'
     implementation 'com.aliyun.oss:aliyun-sdk-oss:3.10.2'
+    implementation 'org.json:json:20210307'
 }
 
 test {
