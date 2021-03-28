@@ -5,9 +5,8 @@ import org.fridge.model.*;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 public class PointCalculater {
@@ -23,7 +22,7 @@ public class PointCalculater {
      */
     public static void countPoints(List<Menu> menuList, List<UserInfo> userInfoList, List<MenuFavourite> menuFavouriteList, List<Food> foodList, List<Food> deadlineFood, List<UserDiet> userDietList) {
         //喜好相关：用户收藏的菜谱的tag统计<tagId, 出现次数>
-        HashMap<Integer, Integer> favouriteTagId = new HashMap<>();
+        HashMap<Integer, Integer> favouriteTagId;
         //喜好：年龄相关的tag
         HashMap<Integer, Integer> ageTastesTagId = new HashMap<>();
         //健康相关：年龄段需要的营养、BMI、体脂率
@@ -36,25 +35,23 @@ public class PointCalculater {
 
         //List<Integer> favouriteTagId = new ArrayList<>();
         //遍历收藏菜谱
-        for (MenuFavourite menuFavourite : menuFavouriteList) {
-            if (menuFavourite.getMenu() != null) {
-                String tags = menuFavourite.getMenu().getTag();
-                JSONArray tagsJsonArray = JSONArray.parseArray(tags);
-                for (Object o : tagsJsonArray) {
-                    Integer tag = Integer.parseInt(o.toString());
-                    favouriteTagId.merge(tag, 1, Integer::sum);
-                }
-            }
-
-        }
+        favouriteTagId = menuFavouriteList
+                .stream().parallel()
+                .filter(menuFavourite -> menuFavourite.getMenu() != null)
+                .map(menuFavourite -> menuFavourite.getMenu().getTag())
+                .map(JSONArray::parseArray)
+                .flatMap(Collection::stream)
+                .map(o -> Integer.parseInt(o.toString()))
+                .collect(Collectors.toMap(tag -> tag, tag -> 1, Integer::sum, HashMap::new));
 
         //遍历所有用户
-        for (UserInfo userInfo : userInfoList) {
-            //int year = userInfo.getBirthday().getYear();
+        //int year = userInfo.getBirthday().getYear();
+        //年龄相关
+        //身高体重体脂相关
+        userInfoList.forEach(userInfo -> {
             Boolean sex = userInfo.getSex();
-            //年龄相关
             if (userInfo.getBirthday() != null) {
-                SimpleDateFormat sformat = new java.text.SimpleDateFormat();
+                SimpleDateFormat sformat = new SimpleDateFormat();
                 sformat.applyPattern("yyyy");
                 int year = Integer.parseInt(sformat.format(userInfo.getBirthday()));
                 Calendar cal = Calendar.getInstance();
@@ -91,11 +88,8 @@ public class PointCalculater {
                 }
 
             }
-
-            //身高体重体脂相关
             Double height = userInfo.getHeight();
             Double weight = userInfo.getWeight();
-
             if (height != null && weight != null) {
                 double BMI = weight / height / height * 10000;
                 if (BMI >= 24) {
@@ -109,17 +103,13 @@ public class PointCalculater {
                     healthTagId.merge(133, 1, Integer::sum);//133低脂
                 }
             }
-        }
+        });
 
         //冰箱里的食物
         //<食物id, 相关参数>
-        HashMap<Long, Integer> foodInFridge = new HashMap<>();
-        for (Food food : foodList) {
-            foodInFridge.merge(food.getId(), 1, Integer::sum);
-        }
-        for (Food food : deadlineFood) {//临期的再多1
-            foodInFridge.merge(food.getId(), 1, Integer::sum);
-        }
+        HashMap<Long, Integer> foodInFridge = foodList.stream().collect(Collectors.toMap(Food::getId, food -> 1, Integer::sum, HashMap::new));
+        //临期的再多1
+        deadlineFood.forEach(food -> foodInFridge.merge(food.getId(), 1, Integer::sum));
 
         //忌口食物和tag
         for (UserDiet userDiet : userDietList) {
@@ -133,44 +123,31 @@ public class PointCalculater {
         int dietFoodIDSize = dietFoodID.size();
 
         //遍历菜谱
-        for (Menu menu : menuList) {
+        menuList.stream().parallel().forEach(menu -> {
             boolean flag = true;
 
             String tags = menu.getTag();
             JSONArray tagsJsonArray = JSONArray.parseArray(tags);
 
             if (dietTagIDSize != 0) {//检查忌口tag
-                for (Object o : tagsJsonArray) {//遍历这道菜的tag，看是否有忌口
-                    Integer tagId = Integer.parseInt(o.toString());
-                    Integer sign = dietTagID.get(tagId);
-                    if (sign != null) {
-                        flag = false;
-                        break;
-                    }
-                }
+                //遍历这道菜的tag，看是否有忌口
+                flag = tagsJsonArray.stream().map(o -> Integer.parseInt(o.toString())).map(dietTagID::get).noneMatch(Objects::nonNull);
             }
-            if (!flag) {
-                menu.setPoint(-1);
-                continue;//下一道菜
-            }
+
 
             if (dietFoodIDSize != 0) {//检查忌口食物
-                for (FoodWarehouse ingredient : menu.getIngredientsList()) {//遍历菜谱的原料
-                    Integer sign = dietFoodID.get(ingredient.getId().intValue());
-                    if (sign != null) {
-                        flag = false;
-                        break;
-                    }
+                //遍历菜谱的原料
+                if (menu.getIngredientsList().stream().map(ingredient -> dietFoodID.get(ingredient.getId().intValue())).anyMatch(Objects::nonNull)) {
+                    flag = false;
                 }
             }
-            if (!flag) {
-                menu.setPoint(-1);
-                continue;//下一道菜
-            }
 
+            if (!flag) {
+                menu.setPoint(Integer.MIN_VALUE);
+            }
             double tastesPoints = 0;//喜好相关的分数
             double healthPoints = 0;//健康相关的分数
-            double foodPoints = 0;//冰箱里的食物的分数
+            double foodPoints;//冰箱里的食物的分数
 
             for (Object o : tagsJsonArray) {//遍历这道菜的tag
                 Integer tagId = Integer.parseInt(o.toString());
@@ -193,16 +170,15 @@ public class PointCalculater {
 
             //冰箱食物相关
             //遍历菜谱的原料
-            for (FoodWarehouse ingredient : menu.getIngredientsList()) {
-                Integer foodParameter = foodInFridge.get(ingredient.getId());
-                if (foodParameter != null) {
-                    foodPoints += foodParameter;
-                }
-            }
+            foodPoints = menu.getIngredientsList()
+                    .stream()
+                    .map(ingredient -> foodInFridge.get(ingredient.getId()))
+                    .mapToDouble(foodParameter -> foodParameter)
+                    .sum();
 
             double totalPoints = tastesPoints * 0.4 + healthPoints * 0.4 + foodPoints * 0.2;
             menu.setPoint(totalPoints);
 
-        }//遍历菜谱结束
+        });//遍历菜谱结束
     }
 }
