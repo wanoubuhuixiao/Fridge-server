@@ -84,31 +84,35 @@ public class MenuService {
 
     /**
      * 菜谱推荐
+     *
      * @param fridgeId 冰箱id
-     * @param num 几道菜
+     * @param num      几道菜
      * @return menuList
      */
-    public List<RawMenu> menuRecommend(Long fridgeId, int num){
+    public List<RawMenu> menuRecommend(Long fridgeId, int num) {
         List<Menu> menuList = menuMapper.selectAllMenu();
         List<UserInfo> userInfoList = userInfoMapper.selectUserByFridgeId(fridgeId);
         List<MenuFavourite> menuFavouriteList = new ArrayList<>();
-        for (UserInfo user:userInfoList) {
+        List<UserDiet> userDietList = new ArrayList<>();
+        for (UserInfo user : userInfoList) {
             menuFavouriteList.addAll(menuFavouriteMapper.selectMenuFavouriteByUserId(user.getId()));
+            userDietList.addAll(userDietMapper.selectDietByUser(user.getId().intValue()));
         }
 
         List<Food> foodList = foodMapper.selectByFridgeId(fridgeId);
         List<Food> deadlineFood = foodMapper.firstFourDeadlineFood(fridgeId);
 
-        PointCalculater.countPoints(menuList, userInfoList, menuFavouriteList, foodList, deadlineFood);
+        PointCalculater.countPoints(menuList, userInfoList, menuFavouriteList, foodList, deadlineFood, userDietList);
 
         PriorityQueue<Menu> queue = new PriorityQueue<>(Comparator.comparingDouble(Menu::getPoint).reversed());
-        queue.addAll(menuList);
-//        for (Menu menu:menuList) {
-//
-//
-//        }
+        //queue.addAll(menuList);
+        for (Menu menu : menuList) {
+            if (menu.getPoint() >= 0) {
+                queue.add(menu);
+            }
+        }
         List<RawMenu> recommendMenuList = new ArrayList<>();
-        while(num-- > 0){
+        while (num-- > 0 && !queue.isEmpty()) {
             recommendMenuList.add(new RawMenu(Objects.requireNonNull(queue.poll())));
         }
 

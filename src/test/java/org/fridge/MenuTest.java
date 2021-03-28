@@ -4,18 +4,13 @@ import org.fridge.controller.MenuController;
 import org.fridge.mapper.FoodMapper;
 import org.fridge.mapper.MenuMapper;
 import org.fridge.model.Food;
-import org.fridge.model.FoodWarehouse;
-import org.fridge.model.Menu;
 import org.fridge.service.MenuService;
 import org.fridge.service.SpeakService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 @SpringBootTest
 public class MenuTest {
@@ -80,11 +75,23 @@ public class MenuTest {
 
     @Test
     void BMI() {
-        int a = 4;
-        while(a-- != 0){
-            System.out.println(a);
-
+        double a = 1;
+        if (a == 1) {
+            System.out.println("a等于1");
         }
+        a++;
+        if (a == 2) {
+            System.out.println("a=2");
+        }
+        a++;
+        if (a == 3) {
+            System.out.println("a=3");
+        }
+        a = 0.1 + 0.2;
+        if (a == 0.3) {
+            System.out.println("a=0.3");
+        }
+
 
     }
 }
