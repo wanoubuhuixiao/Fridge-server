@@ -16,7 +16,7 @@ public class MenuFavouriteService {
         this.menuFavouriteMapper = menuFavouriteMapper;
     }
 
-    public List<MenuFavourite> selectFavourite(int userId) {
+    public List<MenuFavourite> selectFavourite(Long userId) {
         return (menuFavouriteMapper.selectMenuFavouriteByUserId(userId));
     }
 }

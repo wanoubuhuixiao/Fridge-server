@@ -26,7 +26,7 @@ public class MenuFavouriteTest {
 
     @Test
     public void getList() {
-        List<MenuFavourite> menuFavourites = menuFavouriteMapper.selectMenuFavouriteByUserId(1);
+        List<MenuFavourite> menuFavourites = menuFavouriteMapper.selectMenuFavouriteByUserId(1L);
 
         for (MenuFavourite favourite : menuFavourites) {
             System.out.println(favourite);

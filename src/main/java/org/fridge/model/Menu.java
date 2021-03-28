@@ -14,8 +14,18 @@ public class Menu {
     private String ingredients;
     private String tag;
 
+    private List<FoodWarehouse> ingredientsList;//食材列表
+
     //菜谱推荐时比较用的点数
-    private double point;
+    private double point = 0;//初始化为0
+
+    public List<FoodWarehouse> getIngredientsList() {
+        return ingredientsList;
+    }
+
+    public void setIngredientsList(List<FoodWarehouse> ingredientsList) {
+        this.ingredientsList = ingredientsList;
+    }
 
     public Menu(long id, String name, String largeImg, String smallImg, String steps, String ingredients, String tag) {
         this.id = id;
@@ -27,31 +37,7 @@ public class Menu {
         this.tag = tag;
     }
 
-    public Menu() {
 
-    }
-
-    /**
-     *计算所有菜谱的点数，并赋值给对应的menu对象的point属性
-     * @param menuList 所有菜谱
-     * @param userInfoList 对应冰箱id的所有用户
-     * @param userDietList 对应冰箱id的所有用户的“忌口“食物
-     * @param menuFavouriteList
-     * @param foodList
-     */
-    public static void countPoints(List<Menu> menuList, List<UserInfo> userInfoList, List<UserDiet> userDietList, List<MenuFavourite> menuFavouriteList, List<Food> foodList){
-        List<Tag> favouriteTag = new ArrayList<>();
-        for (MenuFavourite menuFavourite: menuFavouriteList) {
-            String tags = menuFavourite.getMenu().getTag();
-            JSONArray tagsJsonArray = JSONArray.parseArray(tags);
-            for (Object o: tagsJsonArray) {
-                int tag = Integer.parseInt(o.toString());
-
-            }
-            //favouriteTag.add()
-
-        }
-    }
 
     public Long getId() {
         return id;
@@ -131,5 +117,8 @@ public class Menu {
                 ", smallImg='" + smallImg + '\'' +
                 ", tag='" + tag + '\'' +
                 '}';
+    }
+
+    public Menu() {
     }
 }

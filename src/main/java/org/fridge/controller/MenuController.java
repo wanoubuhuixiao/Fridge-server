@@ -2,11 +2,13 @@ package org.fridge.controller;
 
 import org.fridge.model.Menu;
 import org.fridge.model.common.ApiResponse;
+import org.fridge.model.common.Responses;
 import org.fridge.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -34,11 +36,12 @@ public class MenuController {
     }
 
     @PostMapping(value = "/menu/recommend")
-    public List<Menu> menuRecommend(int num) {
+    public ApiResponse<List<Menu>> menuRecommend(Long fridgeId, int num) {
         if (num < 0) {
-            return null;
+            return Responses.fail();
         }
-        return menuService.selectLimitMenu(num);
+        List<Menu> menuList = menuService.menuRecommend(fridgeId, num);
+        return Responses.ok(menuList);
     }
 
     @PostMapping(value = "/menu/select/id")

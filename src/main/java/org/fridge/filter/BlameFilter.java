@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.UUID;
 
-@Order(1)
-@WebFilter(urlPatterns = "/*")
+//@Order(1)
+//@WebFilter(urlPatterns = "/*")
 public class BlameFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) {

@@ -30,7 +30,7 @@ public class MenuFavouriteController {
 
     @PostMapping(value = "/menu/select/favourite")
     @ResponseBody
-    public ApiResponse<List<MenuFavourite>> selectFavouriteByUserId(int id) {
+    public ApiResponse<List<MenuFavourite>> selectFavouriteByUserId(Long id) {
         return Responses.ok(menuFavouriteService.selectFavourite(id));
     }
 }

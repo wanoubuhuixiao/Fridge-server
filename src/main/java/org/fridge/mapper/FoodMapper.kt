@@ -28,4 +28,7 @@ interface FoodMapper {
     @Select("select level from food where foodName=#{foodName} and fridgeId=#{fridgeId}")
     fun findFoodLevel(foodName: String, fridgeId: Int): Int?
 
+    @Select("select * from food where fridgeId = #{id}")
+    fun selectByFridgeId(id: Long): List<Food>
+
 }

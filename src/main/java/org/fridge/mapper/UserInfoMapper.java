@@ -16,5 +16,5 @@ public interface UserInfoMapper {
      * @return 对应冰箱的所有用户构成的List
      */
     @Select(value = {"select * from user_info where fridgeId=#{fridgeId}"})
-    List<UserInfo> selectUserByFridgeId(Integer fridgeId);
+    List<UserInfo> selectUserByFridgeId(Long fridgeId);
 }

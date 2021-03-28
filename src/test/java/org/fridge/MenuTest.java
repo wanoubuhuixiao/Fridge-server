@@ -4,13 +4,18 @@ import org.fridge.controller.MenuController;
 import org.fridge.mapper.FoodMapper;
 import org.fridge.mapper.MenuMapper;
 import org.fridge.model.Food;
+import org.fridge.model.FoodWarehouse;
+import org.fridge.model.Menu;
 import org.fridge.service.MenuService;
 import org.fridge.service.SpeakService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @SpringBootTest
 public class MenuTest {
@@ -71,5 +76,15 @@ public class MenuTest {
     @Test
     void getMenu() {
         speakService.ruyiRobot("杭州天气", "xxx");
+    }
+
+    @Test
+    void BMI() {
+        int a = 4;
+        while(a-- != 0){
+            System.out.println(a);
+
+        }
+
     }
 }

@@ -25,6 +25,6 @@ public interface MenuFavouriteMapper {
                     )
             }
     )
-    List<MenuFavourite> selectMenuFavouriteByUserId(int user_id);
+    List<MenuFavourite> selectMenuFavouriteByUserId(Long user_id);
 
 }
