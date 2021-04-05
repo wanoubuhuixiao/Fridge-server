@@ -10,7 +10,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 @SpringBootTest
 public class MenuTest {
@@ -74,23 +77,15 @@ public class MenuTest {
     }
 
     @Test
-    void BMI() {
-        double a = 1;
-        if (a == 1) {
-            System.out.println("a等于1");
-        }
-        a++;
-        if (a == 2) {
-            System.out.println("a=2");
-        }
-        a++;
-        if (a == 3) {
-            System.out.println("a=3");
-        }
-        a = 0.1 + 0.2;
-        if (a == 0.3) {
-            System.out.println("a=0.3");
-        }
+    void BMI() throws ParseException {
+//        Date date = new Date();
+//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+//        System.out.println("时间是" + formatter.format(date));
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        System.out.println("时间是" + sdf.parse("2021-4-5 12:09"));
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT+8:00"));
+        System.out.println("时间是" + sdf.parse("2021-4-5 12:09"));
 
 
     }

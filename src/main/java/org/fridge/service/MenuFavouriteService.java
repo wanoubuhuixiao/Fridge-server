@@ -2,6 +2,7 @@ package org.fridge.service;
 
 import org.fridge.mapper.MenuFavouriteMapper;
 import org.fridge.model.MenuFavourite;
+import org.fridge.model.RawMenuFavourite;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,5 +19,16 @@ public class MenuFavouriteService {
 
     public List<MenuFavourite> selectFavourite(Long userId) {
         return (menuFavouriteMapper.selectMenuFavouriteByUserId(userId));
+    }
+
+    public int insertFavourite(RawMenuFavourite rawMenuFavourite) {
+        if (rawMenuFavourite == null) {
+            return -1;
+        }
+        return menuFavouriteMapper.insertMenuFavourite(rawMenuFavourite);
+    }
+
+    public int deleteFavourite(Integer menuId, Integer userId) {
+        return menuFavouriteMapper.deleteMenuFavourite(menuId, userId);
     }
 }

@@ -31,24 +31,42 @@ class FoodController {
     @PostMapping(value = ["/foods/insert"])
     @ResponseBody
     fun insertFood(
-            foodName: String,
-            productionDate: String,
-            freezer: Long,
-            level: Long,
-            defrost: Long,
-            fridgeId: Long,
-            weight: Float,
+            foodName: String?,
+            productionDate: String?,
+            freezer: Long?,
+            level: Long?,
+            defrost: Long?,
+            fridgeId: Long?,
+            weight: Float?,
     ): ApiResponse<Any> {
         val food = Food()
+        if (foodName == null || fridgeId == null) {
+            return Responses.fail("食材名称和冰箱id都不能为空")
+        }
         food.foodName = foodName
-        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm")
-        sdf.timeZone = TimeZone.getTimeZone("GMT+8:00")
-        food.productionDate = sdf.parse(productionDate)
-        food.freezer = freezer
-        food.level = level
-        food.defrost = defrost
         food.fridgeId = fridgeId
-        food.weight = weight
+        if (productionDate != null) {
+            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm")
+            sdf.timeZone = TimeZone.getTimeZone("GMT+8:00")
+            try {
+                food.productionDate = sdf.parse(productionDate)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                return Responses.fail("时间格式错误")
+            }
+        }
+        if (freezer != null) {
+            food.freezer = freezer
+        }
+        if (level != null) {
+            food.level = level
+        }
+        if (defrost != null) {
+            food.defrost = defrost
+        }
+        if (weight != null) {
+            food.weight = weight
+        }
 
         val result = foodService.insertFood(food)
         if (result == 1) {
