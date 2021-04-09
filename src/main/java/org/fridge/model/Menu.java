@@ -1,10 +1,11 @@
 package org.fridge.model;
 
 import com.alibaba.fastjson.JSONArray;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@JsonIgnoreProperties(value = {"handler"})
 public class Menu {
     private Long id;
     private String name;
