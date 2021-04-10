@@ -1,5 +1,6 @@
 package org.fridge.controller;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.fridge.model.MenuFavourite;
 import org.fridge.model.RawMenuFavourite;
 import org.fridge.model.common.ApiResponse;
@@ -31,16 +32,17 @@ public class MenuFavouriteController {
     public void setMenuService(MenuService menuService) {
         this.menuService = menuService;
     }
-
+    @JsonIgnoreProperties(value = {"handler"})
     @PostMapping(value = "/menu/select/favourite")
     @ResponseBody
-    public ApiResponse<List<MenuFavourite>> selectFavouriteByUserId(Long id) {
+    public ApiResponse<Object> selectFavouriteByUserId(Long id) {
         return Responses.ok(menuFavouriteService.selectFavourite(id));
     }
 
     /**
      * 添加收藏
      */
+
     @PostMapping(value = "/menu/insert/favourite")
     @ResponseBody
     public ApiResponse<Object> insertFavourite(Integer menuId, Integer userId) {

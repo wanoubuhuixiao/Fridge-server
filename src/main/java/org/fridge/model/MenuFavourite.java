@@ -1,12 +1,19 @@
 package org.fridge.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.Date;
-
+@JsonIgnoreProperties(value = {"handler"})
 public class MenuFavourite {
-    private Menu menu;
-    private Date favouriteTime;
-    private Integer userId;
+    public Menu menu;
+    public Date favouriteTime;
+    public Integer userId;
 
+    public MenuFavourite(Menu menu, Date favouriteTime, Integer userId) {
+        this.menu = menu;
+        this.favouriteTime = favouriteTime;
+        this.userId = userId;
+    }
 
     public Integer getUserId() {
         return userId;

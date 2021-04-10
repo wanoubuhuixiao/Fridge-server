@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface MenuFavouriteMapper {
-    @Select("select * from menu_favourite where user_id = #{user_id}")
+    @Select("select * from menu_favourite where userId = #{user_id}")
     @Results(
             value = {
                     @Result(
@@ -31,13 +31,13 @@ public interface MenuFavouriteMapper {
     /**
      * 添加
      */
-    @Insert("insert into menu_favourite(id, favourite_time, user_id) values (#{menuId}, #{favouriteTime}, #{userId})")
+    @Insert("insert into menu_favourite(id, favouriteTime, userid) values (#{menuId}, #{favouriteTime}, #{userId})")
     int insertMenuFavourite(RawMenuFavourite rawMenuFavourite);
 
     /**
      * 删除
      */
-    @Delete("delete from menu_favourite where id = #{menuId} and user_id = #{userId}")
+    @Delete("delete from menu_favourite where id = #{menuId} and userid = #{userId}")
     int deleteMenuFavourite(Integer menuId, Integer userId);
 
 }
