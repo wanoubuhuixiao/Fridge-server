@@ -35,7 +35,7 @@ public class MenuFavouriteController {
     @JsonIgnoreProperties(value = {"handler"})
     @PostMapping(value = "/menu/select/favourite")
     @ResponseBody
-    public ApiResponse<Object> selectFavouriteByUserId(Long id) {
+    public ApiResponse<List<MenuFavourite>> selectFavouriteByUserId(Long id) {
         return Responses.ok(menuFavouriteService.selectFavourite(id));
     }
 

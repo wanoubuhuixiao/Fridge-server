@@ -19,10 +19,10 @@ public interface MenuFavouriteMapper {
                             one = @One(select = "org.fridge.mapper.MenuMapper.selectMenuById", fetchType = FetchType.EAGER)
                     ),
                     @Result(
-                            property = "userId", column = "user_id"
+                            property = "userId", column = "userId"
                     ),
                     @Result(
-                            property = "favouriteTime", column = "favourite_time"
+                            property = "favouriteTime", column = "favouriteTime"
                     )
             }
     )
@@ -31,13 +31,13 @@ public interface MenuFavouriteMapper {
     /**
      * 添加
      */
-    @Insert("insert into menu_favourite(id, favouriteTime, userid) values (#{menuId}, #{favouriteTime}, #{userId})")
+    @Insert("insert into menu_favourite(id, favouriteTime, userId) values (#{menuId}, #{favouriteTime}, #{userId})")
     int insertMenuFavourite(RawMenuFavourite rawMenuFavourite);
 
     /**
      * 删除
      */
-    @Delete("delete from menu_favourite where id = #{menuId} and userid = #{userId}")
+    @Delete("delete from menu_favourite where id = #{menuId} and userId = #{userId}")
     int deleteMenuFavourite(Integer menuId, Integer userId);
 
 }
