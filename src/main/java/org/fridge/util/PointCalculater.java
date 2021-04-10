@@ -173,8 +173,10 @@ public class PointCalculater {
             foodPoints = menu.getIngredientsList()
                     .stream()
                     .map(ingredient -> foodInFridge.get(ingredient.getId()))
-                    .mapToDouble(foodParameter -> foodParameter)
+                    .filter(Objects::nonNull)
+                    .mapToDouble(it -> it)
                     .sum();
+
 
             double totalPoints = tastesPoints * 0.4 + healthPoints * 0.4 + foodPoints * 0.2;
             menu.setPoint(totalPoints);

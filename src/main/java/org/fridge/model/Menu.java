@@ -38,8 +38,6 @@ public class Menu {
         this.tag = tag;
     }
 
-
-
     public Long getId() {
         return id;
     }
