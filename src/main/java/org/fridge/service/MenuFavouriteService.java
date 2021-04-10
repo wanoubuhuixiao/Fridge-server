@@ -18,6 +18,7 @@ public class MenuFavouriteService {
     }
 
     public List<MenuFavourite> selectFavourite(Long userId) {
+        System.out.println(menuFavouriteMapper.selectMenuFavouriteByUserId(userId));
         return (menuFavouriteMapper.selectMenuFavouriteByUserId(userId));
     }
 

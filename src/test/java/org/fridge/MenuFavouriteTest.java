@@ -2,6 +2,7 @@ package org.fridge;
 
 import org.fridge.mapper.MenuFavouriteMapper;
 import org.fridge.model.MenuFavourite;
+import org.fridge.service.MenuFavouriteService;
 import org.fridge.service.MenuService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,11 @@ import java.util.List;
 public class MenuFavouriteTest {
     MenuFavouriteMapper menuFavouriteMapper;
     MenuService menuService;
+    MenuFavouriteService menuFavouriteService;
+    @Autowired
+    public void setMenuFavouriteService(MenuFavouriteService menuFavouriteService) {
+        this.menuFavouriteService = menuFavouriteService;
+    }
 
     @Autowired
     public void setMenuService(MenuService menuService) {
@@ -23,11 +29,12 @@ public class MenuFavouriteTest {
     public void setMenuFavouriteMapper(MenuFavouriteMapper menuFavouriteMapper) {
         this.menuFavouriteMapper = menuFavouriteMapper;
     }
-
     @Test
     public void getList() {
+
+        List<MenuFavourite> menuFavourite1 = menuFavouriteService.selectFavourite(1L);
         List<MenuFavourite> menuFavourites = menuFavouriteMapper.selectMenuFavouriteByUserId(1L);
-        for (MenuFavourite favourite : menuFavourites) {
+        for (MenuFavourite favourite : menuFavourite1) {
             System.out.println(favourite);
         }
     }
