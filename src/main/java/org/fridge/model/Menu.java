@@ -16,12 +16,21 @@ public class Menu {
     private String tag;
 
     private List<FoodWarehouse> ingredientsList;//食材列表
+    private List<Tag> tagList;//tag列表
 
     //菜谱推荐时比较用的点数
     private double point = 0;//初始化为0
 
     public List<FoodWarehouse> getIngredientsList() {
         return ingredientsList;
+    }
+
+    public void setTagList(List<Tag> tagList) {
+        this.tagList = tagList;
+    }
+
+    public List<Tag> getTagList() {
+        return tagList;
     }
 
     public void setIngredientsList(List<FoodWarehouse> ingredientsList) {

@@ -89,7 +89,7 @@ public class MenuService {
      * @param num      几道菜
      * @return menuList
      */
-    public List<RawMenu> menuRecommend(Long fridgeId, int num) {
+    public List<Menu> menuRecommend(Long fridgeId, int num) {
         List<Menu> menuList = menuMapper.selectAllMenu();
         List<UserInfo> userInfoList = userInfoMapper.selectUserByFridgeId(fridgeId);
         List<MenuFavourite> menuFavouriteList = new ArrayList<>();
@@ -111,9 +111,9 @@ public class MenuService {
                 queue.add(menu);
             }
         }
-        List<RawMenu> recommendMenuList = new ArrayList<>();
+        List<Menu> recommendMenuList = new ArrayList<>();
         while (num-- > 0 && !queue.isEmpty()) {
-            recommendMenuList.add(new RawMenu(Objects.requireNonNull(queue.poll())));
+            recommendMenuList.add(queue.poll());
         }
 
         return recommendMenuList;

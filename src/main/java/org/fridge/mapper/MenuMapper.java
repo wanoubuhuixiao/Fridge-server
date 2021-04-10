@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 import org.fridge.model.FoodWarehouse;
 import org.fridge.model.Menu;
+import org.fridge.model.Tag;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -30,6 +31,10 @@ public interface MenuMapper {
                 @Result(
                         property = "ingredientsList", column = "id",
                         many = @Many(select = "org.fridge.mapper.MenuMapper.selectFoodWarehouseByMenuId", fetchType = FetchType.LAZY)
+                ),
+                @Result(
+                        property = "tagList", column = "id",
+                        many = @Many(select = "org.fridge.mapper.MenuMapper.selectTagByMenuId", fetchType = FetchType.LAZY)
                 )
             })
     @Select(value = {"select * from menu where id=#{id}"})
@@ -41,6 +46,12 @@ public interface MenuMapper {
      */
     @Select("select fw.* from menu_food mf,food_warehouse fw where mf.food_id = fw.id and mf.menu_id=#{menuId}")
     List<FoodWarehouse> selectFoodWarehouseByMenuId(Integer menuId);
+
+    /**
+     *根据菜谱id查出tag列表
+     */
+    @Select("select t.* from tag t,menu_tag mt where t.id = mt.tag_id and mt.menu_id = #{menuId}")
+    List<Tag> selectTagByMenuId(Integer menuId);
 
     /**
      * (用户)菜名模糊查询菜谱
@@ -56,6 +67,10 @@ public interface MenuMapper {
             @Result(
                     property = "ingredientsList", column = "id",
                     many = @Many(select = "org.fridge.mapper.MenuMapper.selectFoodWarehouseByMenuId", fetchType = FetchType.LAZY)
+            ),
+            @Result(
+                    property = "tagList", column = "id",
+                    many = @Many(select = "org.fridge.mapper.MenuMapper.selectTagByMenuId", fetchType = FetchType.LAZY)
             )
     })
     @Select(value = {"select * from menu"})

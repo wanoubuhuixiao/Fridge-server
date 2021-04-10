@@ -1,5 +1,6 @@
 package org.fridge.controller;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.fridge.model.Menu;
 import org.fridge.model.RawMenu;
 import org.fridge.model.common.ApiResponse;
@@ -35,12 +36,13 @@ public class MenuController {
         return menuService.MenuQueryByName(menu);
     }
 
+    @JsonIgnoreProperties(value = {"handler"})
     @PostMapping(value = "/menu/recommend")
-    public ApiResponse<List<RawMenu>> menuRecommend(Long fridgeId, int num) {
+    public ApiResponse<Object> menuRecommend(Long fridgeId, int num) {
         if (num < 0) {
             return Responses.fail();
         }
-        List<RawMenu> menuList = menuService.menuRecommend(fridgeId, num);
+        List<Menu> menuList = menuService.menuRecommend(fridgeId, num);
         return Responses.ok(menuList);
     }
 
