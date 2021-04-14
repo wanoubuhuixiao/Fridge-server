@@ -14,7 +14,7 @@ import java.io.IOException;
 @RestController
 public class SttController {
 
-    @PostMapping(value = "stt")
+    @PostMapping(value = "/stt")
     public ApiResponse<Object> speechToText(@RequestParam("file") MultipartFile file) throws IOException, DemoException {
         if (file.isEmpty()) {
             return Responses.fail("文件为空");
