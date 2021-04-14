@@ -88,5 +88,17 @@ class FoodController {
         return Responses.fail()
     }
 
+    @PostMapping(value = ["/foods/getPos"])
+    @ResponseBody
+    fun getFoodPos(foodName: String, fridgeId: Int): ApiResponse<Any> {
+        val result = foodService.findFoodLevel(foodName, fridgeId)
+        return if (result.contains("冰箱里没有")) {
+            Responses.fail(result)
+        } else{
+            Responses.ok(result)
+        }
+
+    }
+
 }
 

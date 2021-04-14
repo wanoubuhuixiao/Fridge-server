@@ -51,11 +51,15 @@ public class FoodService {
     public String findFoodLevel(String foodName, Integer fridgeId) {
         String result;
         Integer level = foodMapper.findFoodLevel(foodName, fridgeId);
+        Integer freeze = foodMapper.findFoodFreezer(foodName, fridgeId);
         if (level != null) {
-            result = foodName + "在冰箱的第" + level + "层";
+            String res = freeze==1?"冷藏":"冷冻";
+//            if (freeze == 1)
+            result = foodName + "在冰箱的"+res+"区"+"的第" + level + "层";
         } else {
             result = "冰箱里没有" + foodName;
         }
         return result;
     }
+
 }
