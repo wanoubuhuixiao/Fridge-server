@@ -20,7 +20,7 @@ public class Stt {
     // 文件格式, 支持pcm/wav/amr 格式，极速版额外支持m4a 格式
     //private final String FORMAT = FILENAME.substring(FILENAME.length() - 3);
     // 采样率固定值
-    private final int RATE = 16000;
+    private final int RATE = 8000;
     private final String CUID = "1234567JAVA";
     private final String URL;
 
